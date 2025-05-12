@@ -37,11 +37,11 @@ def start_session():
 def stop_session():
     session_functions.stop_session()
 
-@app.route('/session/save_values', method=['POST'])
+@app.route('/session/save_values', methods=['POST'])
 def save_values():
     session_functions.save_sensor_values()
 
-@app.route('/session/save_session', method=['POST'])
+@app.route('/session/save_session', methods=['POST'])
 def save_session():
     session_functions.save_session()
 

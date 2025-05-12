@@ -3,7 +3,7 @@ import 'dart:convert';
 
 import '../services/profile_service.dart';
 
-/// Managing and notifying profile state
+// Managing and notifying profile state
 class ProfileViewModel extends ChangeNotifier {
   final ProfileService _profileService = ProfileService();
 

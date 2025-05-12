@@ -6,6 +6,7 @@ import 'dart:io';
 import '../view_models/profile_vm.dart';
 import '../screens/main_dash.dart';
 
+// Profile setup screen when first installing the application
 class ProfileSetup extends StatefulWidget{
 
   const ProfileSetup({super.key});
@@ -15,9 +16,12 @@ class ProfileSetup extends StatefulWidget{
 }
 
 class _ProfileSetupState extends State<ProfileSetup> {
+  // Display name input
   final TextEditingController _displayNameController = TextEditingController();
+  // Profile picture input
   XFile? _profileImage;
 
+  // Asynchronously pick an image from the device using the ImagePicker package
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
@@ -28,6 +32,7 @@ class _ProfileSetupState extends State<ProfileSetup> {
     }
   }
 
+  // Asynchronously save the user information using the ProfileViewModel class
   void _saveProfile() async {
     final String displayName = _displayNameController.text.trim();
     if (displayName.isEmpty || _profileImage == null) {
@@ -38,6 +43,7 @@ class _ProfileSetupState extends State<ProfileSetup> {
     }
 
     final profileViewModel = Provider.of<ProfileViewModel>(context, listen: false);
+    // Try saving the information, and throw a message if an error occurs
     try {
       await profileViewModel.saveProfile(displayName, _profileImage!.path);
       ScaffoldMessenger.of(context).showSnackBar(

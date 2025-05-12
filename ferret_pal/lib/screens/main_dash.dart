@@ -4,6 +4,8 @@ import 'package:provider/provider.dart';
 
 import '../view_models/profile_vm.dart';
 
+import '../screens/session_screen.dart';
+
 /// Main dashboard of the application
 class Dashboard extends StatefulWidget{
   const Dashboard({super.key});
@@ -37,6 +39,16 @@ class _DashboardState extends State<Dashboard>{
             'Hello, ${profileViewModel.displayName}!',
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => SessionScreen()),
+          );
+        },
+        icon: Icon(Icons.access_time),
+        label: Text('Start Session'),
       ),
       // Session widgets
     );

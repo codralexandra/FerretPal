@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 
-/// Service class for server communication
+/// Service class for server communication regarding user information
 class ProfileService {
-  // Server running on _baseUrl
-  static const String _baseUrl = 'http://10.0.2.2:5000';
+  // Server user routes on _baseUrl
+  static const String _baseUrl = 'http://10.0.2.2:5000/user';
 
   // Asynchronously saves the user data by calling the /save_profile route
   Future<bool> saveProfile(String displayName, String profilePicturePath) async {

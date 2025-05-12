@@ -2,13 +2,17 @@ import 'package:ferret_pal/screens/main_dash.dart';
 import 'package:ferret_pal/screens/profile_setup.dart';
 import 'package:ferret_pal/services/profile_service.dart';
 import 'package:ferret_pal/view_models/profile_vm.dart';
+import 'package:ferret_pal/view_models/session_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 void main() {
   runApp(
-    ChangeNotifierProvider(
-        create: (_) => ProfileViewModel(),
+    MultiProvider(
+        providers: [
+          ChangeNotifierProvider(create: (_) => ProfileViewModel()),
+          ChangeNotifierProvider(create: (_) => SessionViewModel()),
+        ],
         child: const MyApp(),
     ),
   );
