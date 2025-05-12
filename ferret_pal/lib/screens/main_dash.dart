@@ -1,10 +1,10 @@
-import 'package:ferret_pal/widgets/app_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../view_models/profile_vm.dart';
 
+/// Main dashboard of the application
 class Dashboard extends StatefulWidget{
   const Dashboard({super.key});
 
@@ -16,9 +16,11 @@ class _DashboardState extends State<Dashboard>{
   @override
   void initState(){
     super.initState();
+    // Get the user information for data display
     _loadUserInfo();
   }
 
+  // Asynchronously load the user information using the ProfileViewModel class
   Future<void> _loadUserInfo() async{
     final profileViewModel = Provider.of<ProfileViewModel>(context, listen:false);
     await profileViewModel.getInfo();
@@ -28,7 +30,15 @@ class _DashboardState extends State<Dashboard>{
   Widget build(BuildContext context){
     final profileViewModel = Provider.of<ProfileViewModel>(context);
     return Scaffold(
-      appBar: CustomAppBar(title: 'Dashboard'),
+      // Custom Navbar Widget
+      appBar: AppBar(
+        title:
+          Text(
+            'Hello, ${profileViewModel.displayName}!',
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+      ),
+      // Session widgets
     );
   }
 }
