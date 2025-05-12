@@ -1,10 +1,9 @@
 from flask import Flask, request, jsonify
-from helpers import user_functions
-
+from helpers import user_functions, session_functions
 app = Flask(__name__)
 
 # PROFILE ROUTES
-@app.route('/save_profile', methods=['POST'])
+@app.route('/user/save_profile', methods=['POST'])
 def save_profile():
     print("miau")
     data = request.json
@@ -17,16 +16,34 @@ def save_profile():
     user_functions.save_user_profile(display_name, profile_picture_path)
     return jsonify({'message': 'Profile saved successfully'}), 200
 
-@app.route('/check_profile_exists', methods=['GET'])
+@app.route('/user/check_profile_exists', methods=['GET'])
 def check_profile_exists():
     exists = user_functions.check_user_exists()
     return jsonify({'exists': exists}), 200
 
-@app.route('/get_user_info', methods=['GET'])
+@app.route('/user/get_user_info', methods=['GET'])
 def get_user_data():
     user = user_functions.get_user_info()
     if user is None: return jsonify({'message':'User not found'}), 404
     return jsonify(user), 200
+
+# SESSION ROUTES
+#To implement!!!
+@app.route('/session/start_session', methods=['POST'])
+def start_session():
+    session_functions.start_session()
+
+@app.route('/session/stop_session', methods=['POST'])
+def stop_session():
+    session_functions.stop_session()
+
+@app.route('/session/save_values', method=['POST'])
+def save_values():
+    session_functions.save_sensor_values()
+
+@app.route('/session/save_session', method=['POST'])
+def save_session():
+    session_functions.save_session()
 
 if __name__ == '__main__':
     app.run(debug=True)
