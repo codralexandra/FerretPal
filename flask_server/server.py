@@ -32,6 +32,7 @@ def get_user_data():
 @app.route('/session/start_session', methods=['POST'])
 def start_session():
     session_functions.start_session()
+    return jsonify({"message": "Session started"}), 200
 
 @app.route('/session/stop_session', methods=['POST'])
 def stop_session():

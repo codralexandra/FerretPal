@@ -10,7 +10,13 @@ class SessionService{
   // Asynchronously starts the session by calling the /session/start_session route
   Future<bool> startSession() async {
     final url = Uri.parse('$_baseUrl/start_session');
-    return true;
+    try{
+      final response = await http.post(url);
+      return response.statusCode == 200;
+    } catch (e){
+      print('Error starting session: $e');
+      return false;
+    }
   }
 
   // Asynchronously stops the session by calling the /session/stop_session route

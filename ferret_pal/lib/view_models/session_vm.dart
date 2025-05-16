@@ -5,14 +5,16 @@ import '../services/session_service.dart';
 // Managing and notifying session state
 class SessionViewModel extends ChangeNotifier{
   final SessionService _sessionService = SessionService();
+  bool isSessionRunning = false;
 
   // Asynchronously starts the session
   Future<void> startSession() async {
-    try {
-      await _sessionService.startSession();
+    final success = await _sessionService.startSession();
+    if(success){
+      isSessionRunning = true;
       notifyListeners();
-    } catch (e) {
-      throw Exception('Error saving profile.');
+    } else{
+      throw Exception('Failed to start session');
     }
   }
 

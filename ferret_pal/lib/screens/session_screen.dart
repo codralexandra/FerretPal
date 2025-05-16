@@ -27,9 +27,11 @@ class _SessionScreenState extends State<SessionScreen>{
 
   // Session details
   DateTime? startTime;
+  bool isLoading = false;
 
   // Asyncs to implement
   Future<void> startSession() async {
+    setState(()=> isLoading = true);
     final sessionViewModel = Provider.of<SessionViewModel>(
         context, listen: false);
     try {
@@ -38,6 +40,8 @@ class _SessionScreenState extends State<SessionScreen>{
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error: $e')),
       );
+    } finally{
+      setState(() => isLoading = false);
     }
   }
 
@@ -143,6 +147,14 @@ class _SessionScreenState extends State<SessionScreen>{
     double progress = totalSeconds > 0 ? remainingSeconds / totalSeconds : 1.0;
     String timeDisplay =
         '${(remainingSeconds ~/ 60).toString().padLeft(2, '0')}:${(remainingSeconds % 60).toString().padLeft(2, '0')}';
+
+    // Shows a loading progress after starting a session
+    if (isLoading) {
+      return Scaffold(
+        appBar: AppBar(title: Text("Starting Session...")),
+        body: Center(child: CircularProgressIndicator()),
+      );
+    }
 
     return Scaffold(
       appBar: AppBar(title: Text("Start a work session!")),
