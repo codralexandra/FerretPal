@@ -22,7 +22,13 @@ class SessionService{
   // Asynchronously stops the session by calling the /session/stop_session route
   Future<bool> stopSession() async {
     final url = Uri.parse('$_baseUrl/stop_session');
-    return true;
+    try{
+      final response = await http.post(url);
+      return response.statusCode == 200;
+    } catch (e){
+      print('Error stopping session: $e');
+      return false;
+    }
   }
 
   // Asynchronously saves the sensor values by calling the /session/save_values route

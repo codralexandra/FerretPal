@@ -37,6 +37,7 @@ def start_session():
 @app.route('/session/stop_session', methods=['POST'])
 def stop_session():
     session_functions.stop_session()
+    return jsonify({"message": "Session stopped"}), 200
 
 @app.route('/session/save_values', methods=['POST'])
 def save_values():

@@ -20,11 +20,12 @@ class SessionViewModel extends ChangeNotifier{
 
   // Asynchronously stops the session
   Future<void> stopSession() async {
-    try {
-      await _sessionService.stopSession();
+    final success = await _sessionService.stopSession();
+    if(success){
+      isSessionRunning = false;
       notifyListeners();
-    } catch (e) {
-      throw Exception('Error saving profile.');
+    } else{
+      throw Exception('Failed to stop session');
     }
   }
 
