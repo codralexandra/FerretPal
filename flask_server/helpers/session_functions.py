@@ -4,6 +4,8 @@ import threading
 
 arduino = None
 stop_event = threading.Event()
+offset = None
+clients = []
 
 # Open the connection on COM5 and read & print each line from the serial terminal
 def read_from_arduino():
@@ -16,13 +18,21 @@ def read_from_arduino():
         time.sleep(2)
         arduino.flushInput()
         print("Connection established! Reading sensor values...")
+
+        calibrate_sensor()
+
         while not stop_event.is_set():
             print("Waiting for data...")
             if arduino.in_waiting:
-                line_bytes = arduino.readline()
-                print(f"Raw bytes: {line_bytes}")
-                line = line_bytes.decode('utf-8').strip()
-                print(f"Flex value: {line}")
+                try:
+                    value = int(arduino.readline().decode().strip())
+                    print(f"Flex value: {value}")
+                    if offset is not None:
+                        is_good = value >= offset - 20
+                        print(f"Posture check: value={value}, threshold={offset - 20}, is_good={is_good}")
+                        broadcast_posture_status(is_good)
+                except ValueError:
+                    continue
             time.sleep(0.2)
     except serial.SerialException as e:
         print(f"Serial error: {e}")
@@ -48,8 +58,26 @@ def stop_session():
     stop_event.set()
     print("Stop signal sent, waiting for reading thread to close the port...")
 
-def save_sensor_values():
-    print("Saving sensor readings...")
+def calibrate_sensor():
+    global offset
+    readings = []
+    start_time = time.time()
+    while time.time() - start_time < 6:
+        try:
+            value = int(arduino.readline().decode().strip())
+            readings.append(value)
+        except ValueError:
+            continue
+        time.sleep(0.1)
+    if readings:
+        offset = sum(readings)/len(readings)
+        print(f"Calibration complete. Offset={offset}")
+    else:
+        print("No sensor data for calibration")
 
-def save_session():
-    print("Saving session...")
+def broadcast_posture_status(is_good):
+    for client in clients:
+        try:
+            client.put(is_good)
+        except:
+            pass

@@ -57,30 +57,6 @@ class _SessionScreenState extends State<SessionScreen>{
     }
   }
 
-  Future<void> saveValues() async {
-    final sessionViewModel = Provider.of<SessionViewModel>(
-        context, listen: false);
-    try {
-      await sessionViewModel.saveValues();
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: $e')),
-      );
-    }
-  }
-
-  Future<void> saveSession() async {
-    final sessionViewModel = Provider.of<SessionViewModel>(
-        context, listen: false);
-    try {
-      await sessionViewModel.saveSession();
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Error: $e')),
-      );
-    }
-  }
-
   // Timer methods
   void startTimer() async{
     totalSeconds = (selectedHours * 3600) + (selectedMinutes * 60);

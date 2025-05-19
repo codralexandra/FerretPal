@@ -1,5 +1,7 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 from helpers import user_functions, session_functions
+import json
+import queue
 app = Flask(__name__)
 
 # PROFILE ROUTES
@@ -28,7 +30,6 @@ def get_user_data():
     return jsonify(user), 200
 
 # SESSION ROUTES
-#To implement!!!
 @app.route('/session/start_session', methods=['POST'])
 def start_session():
     session_functions.start_session()
@@ -39,13 +40,19 @@ def stop_session():
     session_functions.stop_session()
     return jsonify({"message": "Session stopped"}), 200
 
-@app.route('/session/save_values', methods=['POST'])
-def save_values():
-    session_functions.save_sensor_values()
-
-@app.route('/session/save_session', methods=['POST'])
-def save_session():
-    session_functions.save_session()
+@app.route('/session/posture_stream', methods=['GET'])
+def posture_stream():
+    def event_stream():
+        q = queue.Queue()
+        session_functions.clients.append(q)
+        try:
+            while True:
+                is_good = q.get()
+                print(f"Sending SSE: {is_good}")
+                yield f"data: {json.dumps({'is_good': is_good})}\n\n"
+        except GeneratorExit:
+            session_functions.clients.remove(q)
+    return Response(event_stream(), mimetype='text/event-stream')
 
 if __name__ == '__main__':
     app.run(debug=True)

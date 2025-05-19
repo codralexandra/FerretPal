@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -31,15 +33,27 @@ class SessionService{
     }
   }
 
-  // Asynchronously saves the sensor values by calling the /session/save_values route
-  Future<bool> saveValues() async {
-    final url = Uri.parse('$_baseUrl/save_values');
-    return true;
-  }
+  Stream<bool> streamPostureStatus() async* {
+    final client = http.Client();
+    final request = http.Request('GET', Uri.parse('$_baseUrl/posture_stream'));
+    final response = await client.send(request);
 
-  // Asynchronously saves the session data by calling the /session/save_values route
-  Future<bool> saveSession() async {
-    final url = Uri.parse('$_baseUrl/save_session');
-    return true;
+    if(response.statusCode != 200) {
+      throw Exception('Failed to connect to posture stream.');
+    }
+
+    // Accumulate chunks and emit posture booleans
+    final stream = response.stream.transform(utf8.decoder).transform(LineSplitter());
+    await for (final line in stream){
+      if(line.startsWith('data: ')){
+        try{
+          final jsonData = jsonDecode(line.substring(6));
+          print('Received data from server: $jsonData');
+          yield jsonData['is_good'] == true;
+        } catch (e){
+          print('Failed to parse posture data: $e');
+        }
+      }
+    }
   }
 }

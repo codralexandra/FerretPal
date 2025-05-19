@@ -1,6 +1,10 @@
 import 'dart:async';
 import 'dart:convert';
+import 'package:ferret_pal/view_models/session_vm.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+
+import '../widgets/session_timer.dart';
 
 // Message label for posture alerts
 class PostureTracker extends StatefulWidget {
@@ -13,17 +17,28 @@ class PostureTracker extends StatefulWidget {
 }
 
 class _PostureTrackerState extends State<PostureTracker> {
-  bool isPostureGood = false;
-  Timer? _timer;
+  bool isPostureGood = true;
+  StreamSubscription<bool>? _postureSubscription;
 
   @override
   void initState() {
     super.initState();
+    // Grab your VM once:
+    final vm = Provider.of<SessionViewModel>(context, listen: false);
+    // Subscribe immediately to the postureStream:
+    _postureSubscription = vm.postureStream.listen((good) {
+      print("Got posture event: $good");
+      if (mounted && widget.isRunning && !widget.isPaused) {
+        setState(() => isPostureGood = good);
+      }
+    }, onError: (e) {
+      print("Posture stream error: $e");
+    });
   }
 
   @override
   void dispose() {
-    _timer?.cancel();
+    _postureSubscription?.cancel();
     super.dispose();
   }
 

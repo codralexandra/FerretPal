@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 
 import '../services/session_service.dart';
@@ -7,12 +9,23 @@ class SessionViewModel extends ChangeNotifier{
   final SessionService _sessionService = SessionService();
   bool isSessionRunning = false;
 
+  final StreamController<bool> _postureStreamController = StreamController<bool>.broadcast();
+  Stream<bool> get postureStream => _postureStreamController.stream;
+
+  StreamSubscription<bool>? _postureSubscription;
+
   // Asynchronously starts the session
   Future<void> startSession() async {
     final success = await _sessionService.startSession();
     if(success){
       isSessionRunning = true;
       notifyListeners();
+
+      // Listen for posture updates
+      _postureSubscription = _sessionService.streamPostureStatus().listen(
+            (isGood) => _postureStreamController.add(isGood),
+            onError: (e) => print('Posture stream error: $e'),
+      );
     } else{
       throw Exception('Failed to start session');
     }
@@ -23,29 +36,18 @@ class SessionViewModel extends ChangeNotifier{
     final success = await _sessionService.stopSession();
     if(success){
       isSessionRunning = false;
+      _postureSubscription?.cancel();
+      _postureStreamController.add(false);
       notifyListeners();
     } else{
       throw Exception('Failed to stop session');
     }
   }
 
-  // Asynchronously saves sensor values
-  Future<void> saveValues() async {
-    try {
-      await _sessionService.saveValues();
-      notifyListeners();
-    } catch (e) {
-      throw Exception('Error saving profile.');
-    }
-  }
-
-  // Asynchronously saves the session
-  Future<void> saveSession() async {
-    try {
-      await _sessionService.saveSession();
-      notifyListeners();
-    } catch (e) {
-      throw Exception('Error saving profile.');
-    }
+  @override
+  void dispose(){
+    _postureSubscription?.cancel();
+    _postureStreamController.close();
+    super.dispose();
   }
 }
