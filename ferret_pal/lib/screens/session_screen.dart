@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:ferret_pal/screens/break_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,12 +25,13 @@ class _SessionScreenState extends State<SessionScreen>{
   Timer? timer;
   bool isRunning = false;
   bool isPaused = false;
+  bool isOnBreak = false;
+  bool endedManually = false;
 
   // Session details
   DateTime? startTime;
   bool isLoading = false;
 
-  // Asyncs to implement
   Future<void> startSession() async {
     setState(()=> isLoading = true);
     final sessionViewModel = Provider.of<SessionViewModel>(
@@ -62,6 +64,8 @@ class _SessionScreenState extends State<SessionScreen>{
     totalSeconds = (selectedHours * 3600) + (selectedMinutes * 60);
     remainingSeconds = totalSeconds;
     startTime = DateTime.now();
+
+    endedManually = false;
 
     await startSession();
 
@@ -128,6 +132,11 @@ class _SessionScreenState extends State<SessionScreen>{
     });
   }
 
+  void manualStop(){
+    endedManually = true;
+    stopTimer();
+  }
+
   void stopTimer() async{
     timer?.cancel();
 
@@ -139,6 +148,23 @@ class _SessionScreenState extends State<SessionScreen>{
       isRunning = false;
       isPaused = false;
     });
+
+    if(!endedManually){
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => BreakScreen(
+            onBreakEnd: (){
+              Navigator.pop(context);
+              setState((){
+                // blank for now
+              });
+            },
+          ),
+        ),
+      );
+    }
+
   }
 
   @override
@@ -172,7 +198,7 @@ class _SessionScreenState extends State<SessionScreen>{
               selectedMinutes: selectedMinutes,
               onStart: startTimer,
               onPause: pauseTimer,
-              onStop: stopTimer,
+              onStop: manualStop,
               onResume: resumeTimer,
               onHourChange: (value) => setState(() => selectedHours = value),
               onMinuteChange: (value) => setState(() => selectedMinutes = value),

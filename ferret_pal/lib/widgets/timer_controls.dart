@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:numberpicker/numberpicker.dart';
 
 // Timer buttons for time selection, pause, stop &start
 class TimerControls extends StatelessWidget {
@@ -55,28 +56,28 @@ class TimerControls extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            DropdownButton<int>(
-              value: selectedHours,
-              items: List.generate(24, (index) => index)
-                  .map((e) => DropdownMenuItem(value: e, child: Text("$e h")))
-                  .toList(),
-              onChanged: (value) {
-                if (value != null) {
-                  onHourChange(value);
-                }
-              },
+            Column(
+              children:[
+                Text("Hours", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                NumberPicker(
+                  value: selectedHours,
+                  minValue: 0,
+                  maxValue: 8,
+                  onChanged: (value) => onHourChange(value),
+                ),
+              ],
             ),
             SizedBox(width: 20),
-            DropdownButton<int>(
-              value: selectedMinutes,
-              items: List.generate(60, (index) => index)
-                  .map((e) => DropdownMenuItem(value: e, child: Text("$e min")))
-                  .toList(),
-              onChanged: (value) {
-                if (value != null) {
-                  onMinuteChange(value);
-                }
-              },
+            Column(
+              children:[
+                Text("Minutes", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+                NumberPicker(
+                  value: selectedMinutes,
+                  minValue: 1,
+                  maxValue: 59,
+                  onChanged: (value) => onMinuteChange(value),
+                ),
+              ],
             ),
           ],
         ),
