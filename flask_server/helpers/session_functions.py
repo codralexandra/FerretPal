@@ -28,8 +28,8 @@ def read_from_arduino():
                     value = int(arduino.readline().decode().strip())
                     print(f"Flex value: {value}")
                     if offset is not None:
-                        is_good = value >= offset - 20
-                        print(f"Posture check: value={value}, threshold={offset - 20}, is_good={is_good}")
+                        is_good = value >= offset - 10
+                        print(f"Posture check: value={value}, threshold={offset - 10}, is_good={is_good}")
                         broadcast_posture_status(is_good)
                 except ValueError:
                     continue

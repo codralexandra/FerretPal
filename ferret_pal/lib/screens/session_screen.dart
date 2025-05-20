@@ -65,6 +65,29 @@ class _SessionScreenState extends State<SessionScreen>{
 
     await startSession();
 
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context){
+          return AlertDialog(
+            title: Text('Calibrating...'),
+            content: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text('Please sit straight for about 6 seconds, FerretPal is calibrating the sensors...'),
+                SizedBox(height: 20),
+                CircularProgressIndicator(),
+              ],
+            ),
+          );
+        }
+    );
+
+    await Future.delayed(Duration(seconds: 6));
+    if (mounted){
+      Navigator.of(context).pop();
+    }
+
     setState((){
       isRunning = true;
       isPaused = false;
