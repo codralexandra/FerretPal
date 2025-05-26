@@ -1,0 +1,171 @@
+{
+  "start_time": "2025-05-26T03:26:07.569016",
+  "offset": 322.8,
+  "posture_events": [
+    {
+      "timestamp": "2025-05-26T03:26:07.770644",
+      "value": 342,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-05-26T03:26:07.971863",
+      "value": 387,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-05-26T03:26:08.172507",
+      "value": 367,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-05-26T03:26:08.373507",
+      "value": 342,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-05-26T03:26:08.574562",
+      "value": 327,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-05-26T03:26:08.775644",
+      "value": 292,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-05-26T03:26:08.977419",
+      "value": 295,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-05-26T03:26:09.178334",
+      "value": 262,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-05-26T03:26:09.379388",
+      "value": 264,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-05-26T03:26:09.580292",
+      "value": 297,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-05-26T03:26:09.781036",
+      "value": 311,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-05-26T03:26:09.982102",
+      "value": 325,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-05-26T03:26:10.183817",
+      "value": 323,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-05-26T03:26:10.384765",
+      "value": 316,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-05-26T03:26:10.585072",
+      "value": 312,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-05-26T03:26:10.785582",
+      "value": 299,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-05-26T03:26:10.986430",
+      "value": 299,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-05-26T03:26:11.187345",
+      "value": 298,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-05-26T03:26:11.388362",
+      "value": 298,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-05-26T03:26:11.589456",
+      "value": 298,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-05-26T03:26:11.790269",
+      "value": 302,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-05-26T03:26:11.990977",
+      "value": 320,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-05-26T03:26:12.191805",
+      "value": 332,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-05-26T03:26:12.393507",
+      "value": 352,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-05-26T03:26:12.594556",
+      "value": 374,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-05-26T03:26:12.795992",
+      "value": 377,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-05-26T03:26:12.997443",
+      "value": 378,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-05-26T03:26:13.198479",
+      "value": 378,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-05-26T03:26:13.399675",
+      "value": 380,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-05-26T03:26:13.600081",
+      "value": 387,
+      "is_good": true
+    }
+  ],
+  "bad_posture_segments": [
+    {
+      "start": "2025-05-26T03:26:08.775644",
+      "end": "2025-05-26T03:26:09.982102",
+      "duration": 1
+    },
+    {
+      "start": "2025-05-26T03:26:10.585072",
+      "end": "2025-05-26T03:26:11.990977",
+      "duration": 1
+    }
+  ],
+  "end_time": "2025-05-26T03:26:13.700349",
+  "duration_seconds": 6,
+  "total_breaks": 2
+}

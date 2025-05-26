@@ -14,6 +14,14 @@ class SessionViewModel extends ChangeNotifier{
 
   StreamSubscription<bool>? _postureSubscription;
 
+  Map<String,dynamic>? _lastSession;
+  bool _isLoading = false;
+  String? _error;
+
+  Map<String, dynamic>? get lastSession => _lastSession;
+  bool get isLoading => _isLoading;
+  String? get error => _error;
+
   // Asynchronously starts the session
   Future<void> startSession() async {
     final success = await _sessionService.startSession();
@@ -41,6 +49,22 @@ class SessionViewModel extends ChangeNotifier{
       notifyListeners();
     } else{
       throw Exception('Failed to stop session');
+    }
+  }
+
+  // Asynchronously load the last session data
+  Future<void> loadLastSession() async {
+    _isLoading = true;
+    _error = null;
+    notifyListeners();
+
+    try {
+      _lastSession = await _sessionService.fetchLastSession();
+    } catch (e) {
+      _error = e.toString();
+    } finally {
+      _isLoading = false;
+      notifyListeners();
     }
   }
 

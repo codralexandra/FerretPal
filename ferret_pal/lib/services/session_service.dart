@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-// TO IMPLEMENT
 /// Service class for server communication regarding session information
 class SessionService{
   // Session routes on _baseUrl
@@ -54,6 +53,21 @@ class SessionService{
           print('Failed to parse posture data: $e');
         }
       }
+    }
+  }
+
+  Future<Map<String, dynamic>> fetchLastSession() async {
+    final url = Uri.parse('$_baseUrl/get_last_session');
+    try {
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        return json.decode(response.body);
+      } else {
+        throw Exception('Failed to load last session (status: ${response.statusCode})');
+      }
+    } catch (e) {
+      print('Error fetching last session: $e');
+      rethrow;
     }
   }
 }

@@ -1,3 +1,4 @@
+import 'package:ferret_pal/widgets/last_session_overview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,6 +16,8 @@ class Dashboard extends StatefulWidget{
 }
 
 class _DashboardState extends State<Dashboard>{
+  final GlobalKey<LastSessionOverviewState> _lastSessionKey = GlobalKey();
+
   @override
   void initState(){
     super.initState();
@@ -28,29 +31,46 @@ class _DashboardState extends State<Dashboard>{
     await profileViewModel.getInfo();
   }
 
+  void _refreshWidgets() {
+    _lastSessionKey.currentState?.refreshData();
+    setState(() {});
+  }
+
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     final profileViewModel = Provider.of<ProfileViewModel>(context);
     return Scaffold(
-      // Custom Navbar Widget
       appBar: AppBar(
-        title:
-          Text(
-            'Hello, ${profileViewModel.displayName}!',
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          ),
+        title: Text(
+          'Hello, ${profileViewModel.displayName}!',
+          style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+        ),
+      ),
+      body: RefreshIndicator(
+        onRefresh: () async {
+          // Reload user info or anything else
+          await _loadUserInfo();
+          // Refresh the last session widget
+          _refreshWidgets();
+        },
+        child: ListView(
+          physics: const AlwaysScrollableScrollPhysics(), // needed for RefreshIndicator to work when list is short
+          children: [
+            LastSessionOverview(key: _lastSessionKey),
+            // more widgets here
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {
           Navigator.push(
             context,
-            MaterialPageRoute(builder: (context) => SessionScreen()),
+            MaterialPageRoute(builder: (context) => const SessionScreen()),
           );
         },
-        icon: Icon(Icons.access_time),
-        label: Text('Start Session'),
+        icon: const Icon(Icons.access_time),
+        label: const Text('Start Session'),
       ),
-      // Session widgets
     );
   }
 }

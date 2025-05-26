@@ -54,5 +54,9 @@ def posture_stream():
             session_functions.clients.remove(q)
     return Response(event_stream(), mimetype='text/event-stream')
 
+@app.route('/session/get_last_session', methods=['GET'])
+def get_last_session():
+    return session_functions.get_last_session_data()
+
 if __name__ == '__main__':
     app.run(debug=True)
