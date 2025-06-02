@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:confetti/confetti.dart';
 import 'package:ferret_pal/screens/break_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -31,6 +32,9 @@ class _SessionScreenState extends State<SessionScreen>{
   // Session details
   DateTime? startTime;
   bool isLoading = false;
+
+  // Confetti controls
+  final confettiController = ConfettiController();
 
   Future<void> startSession() async {
     setState(()=> isLoading = true);
@@ -150,21 +154,35 @@ class _SessionScreenState extends State<SessionScreen>{
     });
 
     if(!endedManually){
-      Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => BreakScreen(
-            onBreakEnd: (){
-              Navigator.pop(context);
-              setState((){
-                // blank for now
-              });
-            },
+      confettiController.play();
+
+      await Future.delayed(Duration(seconds: 5));
+
+      confettiController.stop();
+
+      if(mounted){
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => BreakScreen(
+              onBreakEnd: (){
+                Navigator.pop(context);
+                setState((){
+                  // blank for now
+                });
+              },
+            ),
           ),
-        ),
-      );
+        );
+      }
     }
 
+  }
+
+  @override
+  void dispose(){
+    super.dispose();
+    confettiController.dispose();
   }
 
   @override
@@ -183,28 +201,40 @@ class _SessionScreenState extends State<SessionScreen>{
 
     return Scaffold(
       appBar: AppBar(title: Text("Start a work session!")),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            PostureTracker(isRunning: isRunning, isPaused: isPaused),
-            SizedBox(height: 40),
-            SessionTimer(progress: progress, timeDisplay: timeDisplay),
-            SizedBox(height: 20),
-            TimerControls(
-              isRunning: isRunning,
-              isPaused: isPaused,
-              selectedHours: selectedHours,
-              selectedMinutes: selectedMinutes,
-              onStart: startTimer,
-              onPause: pauseTimer,
-              onStop: manualStop,
-              onResume: resumeTimer,
-              onHourChange: (value) => setState(() => selectedHours = value),
-              onMinuteChange: (value) => setState(() => selectedMinutes = value),
+      body: Stack(
+        children: [
+          Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                PostureTracker(isRunning: isRunning, isPaused: isPaused),
+                SizedBox(height: 40),
+                SessionTimer(progress: progress, timeDisplay: timeDisplay),
+                SizedBox(height: 20),
+                TimerControls(
+                  isRunning: isRunning,
+                  isPaused: isPaused,
+                  selectedHours: selectedHours,
+                  selectedMinutes: selectedMinutes,
+                  onStart: startTimer,
+                  onPause: pauseTimer,
+                  onStop: manualStop,
+                  onResume: resumeTimer,
+                  onHourChange: (value) => setState(() => selectedHours = value),
+                  onMinuteChange: (value) => setState(() => selectedMinutes = value),
+                ),
+                ConfettiWidget(
+                  confettiController: confettiController,
+                  blastDirectionality: BlastDirectionality.explosive,
+                  shouldLoop: false,
+                  emissionFrequency: 0.05,
+                  numberOfParticles: 20,
+                  gravity: 0.1,
+                )
+              ],
             ),
-          ],
-        ),
+          )
+        ],
       ),
     );
   }

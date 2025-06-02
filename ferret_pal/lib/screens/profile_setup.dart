@@ -20,6 +20,8 @@ class _ProfileSetupState extends State<ProfileSetup> {
   final TextEditingController _displayNameController = TextEditingController();
   // Profile picture input
   XFile? _profileImage;
+  int _currentPage = 0;
+  final PageController _pageController = PageController();
 
   // Asynchronously pick an image from the device using the ImagePicker package
   Future<void> _pickImage() async {
@@ -60,44 +62,126 @@ class _ProfileSetupState extends State<ProfileSetup> {
     }
   }
 
+  Widget _buildDotIndicator(){
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: List.generate(3, (index) => Container(
+        margin: EdgeInsets.symmetric(horizontal: 4),
+        width: _currentPage == index ? 12:8,
+        height: _currentPage == index ? 12:8,
+        decoration: BoxDecoration(
+          color: _currentPage == index ? Colors.lightGreen : Colors.grey,
+          shape: BoxShape.circle,
+        ),
+      )),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile Setup'),
+      appBar: AppBar(title: Text('Welcome')),
+      body: Column(
+        children: [
+          Expanded(
+            child: PageView(
+              controller: _pageController,
+              onPageChanged: (index) {
+                setState(() {
+                  _currentPage = index;
+                });
+              },
+              children: [
+                _buildSlide(
+                  title: "Welcome to PosturePal",
+                  content: "Improve your posture using our Pomodoro-style tracker.",
+                ),
+                _buildSlide(
+                  title: "Stay Consistent",
+                  content: "Track your focus and posture with real-time feedback.",
+                ),
+                _buildSetupSlide()
+              ],
+            ),
+          ),
+          _buildDotIndicator(),
+          SizedBox(height: 10),
+        ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            GestureDetector(
-              onTap: _pickImage,
-              child: CircleAvatar(
-                radius: 50,
-                backgroundImage: _profileImage != null
-                    ? FileImage(File(_profileImage!.path))
-                    : null,
-                child: _profileImage == null
-                    ? Icon(Icons.camera_alt, size: 50, color: Colors.grey)
-                    : null,
+    );
+  }
+
+  Widget _buildSlide({required String title, required String content}) {
+    return Padding(
+      padding: const EdgeInsets.all(24),
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Text(title, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+          SizedBox(height: 20),
+          Text(content, textAlign: TextAlign.center, style: TextStyle(fontSize: 16)),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildSetupSlide() {
+    return Padding(
+      padding: const EdgeInsets.all(24),
+      child: LayoutBuilder(
+        builder: (context, constraints) {
+          return SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: ConstrainedBox(
+              constraints: BoxConstraints(
+                minHeight: constraints.maxHeight,
+              ),
+              child: IntrinsicHeight(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Start your journey today!',
+                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(height: 20),
+                    Text(
+                      'Set up your profile below',
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 16),
+                    ),
+                    SizedBox(height: 20),
+                    GestureDetector(
+                      onTap: _pickImage,
+                      child: CircleAvatar(
+                        radius: 50,
+                        backgroundImage: _profileImage != null
+                            ? FileImage(File(_profileImage!.path))
+                            : null,
+                        child: _profileImage == null
+                            ? Icon(Icons.camera_alt, size: 50, color: Colors.grey)
+                            : null,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    TextField(
+                      controller: _displayNameController,
+                      decoration: InputDecoration(
+                        labelText: 'Display Name',
+                        border: OutlineInputBorder(),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: _saveProfile,
+                      child: Text('Finish Setup'),
+                    ),
+                  ],
+                ),
               ),
             ),
-            SizedBox(height: 20),
-            TextField(
-              controller: _displayNameController,
-              decoration: InputDecoration(
-                labelText: 'Display Name',
-                border: OutlineInputBorder(),
-              ),
-            ),
-            SizedBox(height: 20),
-            ElevatedButton(
-              onPressed: _saveProfile,
-              child: Text('Save Profile'),
-            ),
-          ],
-        ),
+          );
+        },
       ),
     );
   }

@@ -29,6 +29,34 @@ def get_user_data():
     if user is None: return jsonify({'message':'User not found'}), 404
     return jsonify(user), 200
 
+@app.route('/user/get_profile', methods=['GET'])
+def get_profile():
+    user = user_functions.get_full_user_info()
+    if user is None:
+        return jsonify({'message': 'User not found'}), 404
+    return jsonify(user), 200
+
+@app.route('/user/get_badge_preferences', methods=['GET'])
+def get_badge_preferences():
+    badges_info = user_functions.get_badges_info()
+    if badges_info is None:
+        return jsonify({'message': 'User or badges not found'}), 404
+    return jsonify(badges_info), 200
+
+
+@app.route('/user/save_badge_preferences', methods=['POST'])
+def save_badge_preferences():
+    data = request.json
+    badges = data.get('badges')
+    if badges is None or not isinstance(badges, list):
+        return jsonify({'error': 'Invalid or missing badges data'}), 400
+
+    success = user_functions.save_badges_info(badges)
+    if not success:
+        return jsonify({'error': 'Failed to save badges'}), 500
+
+    return jsonify({'message': 'Badge preferences saved successfully'}), 200
+
 # SESSION ROUTES
 @app.route('/session/start_session', methods=['POST'])
 def start_session():

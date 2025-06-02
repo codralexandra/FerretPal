@@ -1,6 +1,22 @@
 {
     "user": {
-        "display_name": "ako",
-        "profile_picture": "/data/user/0/com.example.ferret_pal/cache/10f0bf09-2272-4c2a-b2a7-7e752013e907/1000000033.jpg"
+        "display_name": "Alex",
+        "profile_picture": "/data/user/0/com.example.ferret_pal/cache/aaea6656-7670-4fd9-a6a8-a7844af0abe8/1000000033.jpg",
+        "least_breaks": 2,
+        "total_sessions_completed": 1,
+        "total_focus_time": 178,
+        "total_good_posture_time": 165,
+        "good_posture_streak": 1,
+        "milestones": [],
+        "last_achievement_unlocked": null,
+        "first_session_date": "2025-06-03",
+        "consecutive_days_used": 1,
+        "badges": [
+            "consecutive_days_used",
+            "total_focus_time",
+            "total_sessions_completed",
+            "least_breaks"
+        ],
+        "last_session_date": "2025-06-03"
     }
 }

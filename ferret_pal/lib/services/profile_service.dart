@@ -58,4 +58,46 @@ class ProfileService {
       throw Exception('Failed to load user info');
     }
   }
+
+  // Asynchronously returns the full saved user data from server storage file by calling
+  // the /get_full_profile route
+  Future<Map<String, dynamic>> getFullInfo() async {
+    final url = Uri.parse('$_baseUrl/get_profile');
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      return Map<String, dynamic>.from(data);
+    } else {
+      throw Exception('Failed to load user info');
+    }
+  }
+
+  Future<List<String>> getBadgePreferences() async {
+    final url = Uri.parse('$_baseUrl/get_badge_preferences');
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      // Make sure badges is a list of strings
+      final badges = (data['badges'] as List<dynamic>).map((e) => e.toString()).toList();
+      return badges;
+    } else {
+      throw Exception('Failed to load badge preferences');
+    }
+  }
+
+  // Saves the user's badge preferences to the server
+  Future<void> saveBadgePreferences(List<String> badges) async {
+    final url = Uri.parse('$_baseUrl/save_badge_preferences');
+    final response = await http.post(
+      url,
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({'badges': badges}),
+    );
+
+    if (response.statusCode != 200) {
+      throw Exception('Failed to save badge preferences');
+    }
+  }
 }

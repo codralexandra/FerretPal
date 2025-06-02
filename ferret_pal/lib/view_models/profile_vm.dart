@@ -9,6 +9,17 @@ class ProfileViewModel extends ChangeNotifier {
 
   String? displayName;
   String? profilePicturePath;
+  int? leastBreaks;
+  int totalSessionsCompleted = 0;
+  int totalFocusTime = 0;
+  int totalGoodPostureTime = 0;
+  int goodPostureStreak = 0;
+  List<String> milestones = [];
+  String? lastAchievementUnlocked;
+  String? firstSessionDate;
+  int consecutiveDaysUsed = 0;
+
+  List<String> selectedBadges = [];
 
   /// Asynchronously saves the profile setup on server storage file
   Future<void> saveProfile(String displayName, String profilePicturePath) async {
@@ -38,6 +49,31 @@ class ProfileViewModel extends ChangeNotifier {
       return false;
     }
   }
+  /// Asynchronously returns the full saved user information from server storage file
+  Future<bool> getFullInfo() async {
+    try {
+      final data = await _profileService.getFullInfo();
+
+      displayName = data['display_name'];
+      profilePicturePath = data['profile_picture'];
+
+      leastBreaks = data['least_breaks'];
+      totalSessionsCompleted = data['total_sessions_completed'];
+      totalFocusTime = data['total_focus_time'];
+      totalGoodPostureTime = data['total_good_posture_time'];
+      goodPostureStreak = data['good_posture_streak'];
+      milestones = List<String>.from(data['milestones']);
+      lastAchievementUnlocked = data['last_achievement_unlocked'];
+      firstSessionDate = data['first_session_date'];
+      consecutiveDaysUsed = data['consecutive_days_used'];
+
+      notifyListeners();
+      return true;
+    } catch (e) {
+      print('Error loading full profile: $e');
+      return false;
+    }
+  }
 
   /// Asynchronously checks if there's already a profile setup on server storage file
   Future<bool> profileExists() async {
@@ -46,6 +82,31 @@ class ProfileViewModel extends ChangeNotifier {
     } catch (e) {
       print('Error checking profile existence: $e');
       return false;
+    }
+  }
+
+  /// Fetches badge preferences from server and updates local state
+  Future<List<String>> getBadgePreferences() async {
+    try {
+      final badges = await _profileService.getBadgePreferences();
+      selectedBadges = badges;
+      notifyListeners();
+      return selectedBadges;
+    } catch (e) {
+      print('Error fetching badge preferences: $e');
+      return [];
+    }
+  }
+
+  /// Saves badge preferences to server and updates local state
+  Future<void> saveBadgePreferences(List<String> badges) async {
+    try {
+      await _profileService.saveBadgePreferences(badges);
+      selectedBadges = badges;
+      notifyListeners();
+    } catch (e) {
+      print('Error saving badge preferences: $e');
+      throw Exception('Failed to save badge preferences');
     }
   }
 }
