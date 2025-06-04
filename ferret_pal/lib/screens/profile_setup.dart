@@ -7,8 +7,7 @@ import '../view_models/profile_vm.dart';
 import '../screens/main_dash.dart';
 
 // Profile setup screen when first installing the application
-class ProfileSetup extends StatefulWidget{
-
+class ProfileSetup extends StatefulWidget {
   const ProfileSetup({super.key});
 
   @override
@@ -16,14 +15,13 @@ class ProfileSetup extends StatefulWidget{
 }
 
 class _ProfileSetupState extends State<ProfileSetup> {
-  // Display name input
+  // Inputs
   final TextEditingController _displayNameController = TextEditingController();
-  // Profile picture input
+  final TextEditingController _usernameController = TextEditingController();
   XFile? _profileImage;
   int _currentPage = 0;
   final PageController _pageController = PageController();
 
-  // Asynchronously pick an image from the device using the ImagePicker package
   Future<void> _pickImage() async {
     final ImagePicker picker = ImagePicker();
     final XFile? image = await picker.pickImage(source: ImageSource.gallery);
@@ -34,26 +32,27 @@ class _ProfileSetupState extends State<ProfileSetup> {
     }
   }
 
-  // Asynchronously save the user information using the ProfileViewModel class
   void _saveProfile() async {
     final String displayName = _displayNameController.text.trim();
-    if (displayName.isEmpty || _profileImage == null) {
+    final String username = _usernameController.text.trim();
+
+    if (username.isEmpty || displayName.isEmpty || _profileImage == null) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please provide a display name and a profile picture.')),
+        SnackBar(content: Text('Please provide a username, display name, and a profile picture.')),
       );
       return;
     }
 
     final profileViewModel = Provider.of<ProfileViewModel>(context, listen: false);
-    // Try saving the information, and throw a message if an error occurs
     try {
+      profileViewModel.setUsername(username);
       await profileViewModel.saveProfile(displayName, _profileImage!.path);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Profile setup complete!')),
       );
       Navigator.pushReplacement(
         context,
-        MaterialPageRoute(builder: (context)=>Dashboard()),
+        MaterialPageRoute(builder: (context) => Dashboard()),
       );
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
@@ -62,13 +61,13 @@ class _ProfileSetupState extends State<ProfileSetup> {
     }
   }
 
-  Widget _buildDotIndicator(){
+  Widget _buildDotIndicator() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: List.generate(3, (index) => Container(
         margin: EdgeInsets.symmetric(horizontal: 4),
-        width: _currentPage == index ? 12:8,
-        height: _currentPage == index ? 12:8,
+        width: _currentPage == index ? 12 : 8,
+        height: _currentPage == index ? 12 : 8,
         decoration: BoxDecoration(
           color: _currentPage == index ? Colors.lightGreen : Colors.grey,
           shape: BoxShape.circle,
@@ -161,6 +160,14 @@ class _ProfileSetupState extends State<ProfileSetup> {
                         child: _profileImage == null
                             ? Icon(Icons.camera_alt, size: 50, color: Colors.grey)
                             : null,
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    TextField(
+                      controller: _usernameController,
+                      decoration: InputDecoration(
+                        labelText: 'Username',
+                        border: OutlineInputBorder(),
                       ),
                     ),
                     SizedBox(height: 20),

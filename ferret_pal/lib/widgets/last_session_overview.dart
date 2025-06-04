@@ -1,19 +1,23 @@
 import 'package:ferret_pal/screens/session_detail_screen.dart';
+import 'package:ferret_pal/view_models/session_vm.dart';
 import 'package:flutter/material.dart';
-import 'dart:convert';
 import 'package:fl_chart/fl_chart.dart';
+import 'package:provider/provider.dart';
 
-import '../services/session_service.dart';
+import '../view_models/session_vm.dart';
+import '../view_models/profile_vm.dart';
 
 class LastSessionOverview extends StatefulWidget {
-  const LastSessionOverview({super.key});
+  final String username;
+
+  const LastSessionOverview({super.key, required this.username});
 
   @override
   State<LastSessionOverview> createState() => LastSessionOverviewState();
 }
 
 class LastSessionOverviewState extends State<LastSessionOverview> {
-  final SessionService _sessionService = SessionService();
+  final SessionViewModel _sessionViewModel = SessionViewModel();
   late Future<Map<String,dynamic>> _sessionFuture;
 
   @override
@@ -23,7 +27,7 @@ class LastSessionOverviewState extends State<LastSessionOverview> {
   }
 
   void _loadSession(){
-    _sessionFuture = _sessionService.fetchLastSession();
+    _sessionFuture = _sessionViewModel.loadLastSession(widget.username);
   }
 
   void refreshData() {

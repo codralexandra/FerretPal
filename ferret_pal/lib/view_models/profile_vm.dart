@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'dart:convert';
-
 import '../services/profile_service.dart';
 
-// Managing and notifying profile state
 class ProfileViewModel extends ChangeNotifier {
   final ProfileService _profileService = ProfileService();
 
+  String username = "";
   String? displayName;
   String? profilePicturePath;
   int? leastBreaks;
@@ -21,27 +19,28 @@ class ProfileViewModel extends ChangeNotifier {
 
   List<String> selectedBadges = [];
 
-  /// Asynchronously saves the profile setup on server storage file
+  void setUsername(String uname) {
+    username = uname;
+  }
+
   Future<void> saveProfile(String displayName, String profilePicturePath) async {
+    if (username == null) throw Exception("Username not set.");
     try {
-      await _profileService.saveProfile(displayName, profilePicturePath);
+      await _profileService.saveProfile(username!, displayName, profilePicturePath);
       this.displayName = displayName;
       this.profilePicturePath = profilePicturePath;
-      // Notify the screen that the profile has been saved so that the user can be
-      // redirected to the main_dash
       notifyListeners();
     } catch (e) {
       throw Exception('Error saving profile.');
     }
   }
 
-  /// Asynchronously returns the saved user information from server storage file
   Future<bool> getInfo() async {
+    if (username == null) throw Exception("Username not set.");
     try {
-      final data = await _profileService.getInfo();
+      final data = await _profileService.getInfo(username!);
       displayName = data['display_name'];
       profilePicturePath = data['profile_picture'];
-      // Notify that the data has been received
       notifyListeners();
       return true;
     } catch (e) {
@@ -49,14 +48,14 @@ class ProfileViewModel extends ChangeNotifier {
       return false;
     }
   }
-  /// Asynchronously returns the full saved user information from server storage file
+
   Future<bool> getFullInfo() async {
+    if (username == null) throw Exception("Username not set.");
     try {
-      final data = await _profileService.getFullInfo();
+      final data = await _profileService.getFullInfo(username!);
 
       displayName = data['display_name'];
       profilePicturePath = data['profile_picture'];
-
       leastBreaks = data['least_breaks'];
       totalSessionsCompleted = data['total_sessions_completed'];
       totalFocusTime = data['total_focus_time'];
@@ -75,20 +74,20 @@ class ProfileViewModel extends ChangeNotifier {
     }
   }
 
-  /// Asynchronously checks if there's already a profile setup on server storage file
   Future<bool> profileExists() async {
+    if (username == null) throw Exception("Username not set.");
     try {
-      return await _profileService.profileExists();
+      return await _profileService.profileExists(username!);
     } catch (e) {
       print('Error checking profile existence: $e');
       return false;
     }
   }
 
-  /// Fetches badge preferences from server and updates local state
   Future<List<String>> getBadgePreferences() async {
+    if (username == null) throw Exception("Username not set.");
     try {
-      final badges = await _profileService.getBadgePreferences();
+      final badges = await _profileService.getBadgePreferences(username!);
       selectedBadges = badges;
       notifyListeners();
       return selectedBadges;
@@ -98,10 +97,10 @@ class ProfileViewModel extends ChangeNotifier {
     }
   }
 
-  /// Saves badge preferences to server and updates local state
   Future<void> saveBadgePreferences(List<String> badges) async {
+    if (username == null) throw Exception("Username not set.");
     try {
-      await _profileService.saveBadgePreferences(badges);
+      await _profileService.saveBadgePreferences(username!, badges);
       selectedBadges = badges;
       notifyListeners();
     } catch (e) {

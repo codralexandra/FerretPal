@@ -1,0 +1,21 @@
+{
+    "user": {
+        "display_name": "Alexandra",
+        "profile_picture": "/data/user/0/com.example.ferret_pal/cache/785ba7e2-619d-43e5-9c3b-d6065dad2719/1000000033.jpg",
+        "least_breaks": 4,
+        "total_sessions_completed": 1,
+        "total_focus_time": 58,
+        "total_good_posture_time": 51,
+        "good_posture_streak": 1,
+        "milestones": [],
+        "last_achievement_unlocked": null,
+        "first_session_date": "2025-06-04",
+        "consecutive_days_used": 1,
+        "badges": [
+            "consecutive_days_used",
+            "total_sessions_completed",
+            "total_focus_time"
+        ],
+        "last_session_date": "2025-06-04"
+    }
+}

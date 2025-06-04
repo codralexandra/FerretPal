@@ -1,0 +1,16 @@
+{
+    "user": {
+        "display_name": "Test User",
+        "profile_picture": "/data/user/0/com.example.ferret_pal/cache/6bebf73b-0727-41fa-96a3-35d8814d437a/1000000033.jpg",
+        "least_breaks": null,
+        "total_sessions_completed": 0,
+        "total_focus_time": 0,
+        "total_good_posture_time": 0,
+        "good_posture_streak": 0,
+        "milestones": [],
+        "last_achievement_unlocked": null,
+        "first_session_date": null,
+        "consecutive_days_used": 0,
+        "badges": []
+    }
+}

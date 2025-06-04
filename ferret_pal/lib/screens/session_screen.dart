@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../view_models/session_vm.dart';
+import '../view_models/profile_vm.dart';
 
 import '../widgets/posture_tracker.dart';
 import '../widgets/session_timer.dart';
@@ -36,12 +37,21 @@ class _SessionScreenState extends State<SessionScreen>{
   // Confetti controls
   final confettiController = ConfettiController();
 
+  // Current user
+  String username = "";
+
+  Future<void> loadUser() async{
+    final profileViewModel = Provider.of<ProfileViewModel>(context, listen: false);
+    username = profileViewModel.username;
+  }
+
   Future<void> startSession() async {
     setState(()=> isLoading = true);
     final sessionViewModel = Provider.of<SessionViewModel>(
         context, listen: false);
     try {
-      await sessionViewModel.startSession();
+      loadUser();
+      await sessionViewModel.startSession(username);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error: $e')),
@@ -55,7 +65,7 @@ class _SessionScreenState extends State<SessionScreen>{
     final sessionViewModel = Provider.of<SessionViewModel>(
         context, listen: false);
     try {
-      await sessionViewModel.stopSession();
+      await sessionViewModel.stopSession(username);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Error: $e')),

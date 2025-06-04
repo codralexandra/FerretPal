@@ -23,8 +23,8 @@ class SessionViewModel extends ChangeNotifier{
   String? get error => _error;
 
   // Asynchronously starts the session
-  Future<void> startSession() async {
-    final success = await _sessionService.startSession();
+  Future<void> startSession(String username) async {
+    final success = await _sessionService.startSession(username);
     if(success){
       isSessionRunning = true;
       notifyListeners();
@@ -40,8 +40,8 @@ class SessionViewModel extends ChangeNotifier{
   }
 
   // Asynchronously stops the session
-  Future<void> stopSession() async {
-    final success = await _sessionService.stopSession();
+  Future<void> stopSession(String username) async {
+    final success = await _sessionService.stopSession(username);
     if(success){
       isSessionRunning = false;
       _postureSubscription?.cancel();
@@ -53,15 +53,17 @@ class SessionViewModel extends ChangeNotifier{
   }
 
   // Asynchronously load the last session data
-  Future<void> loadLastSession() async {
+  Future<Map<String, dynamic>> loadLastSession(String username) async {
     _isLoading = true;
     _error = null;
     notifyListeners();
 
     try {
-      _lastSession = await _sessionService.fetchLastSession();
+      _lastSession = await _sessionService.fetchLastSession(username);
+      return _lastSession!; // or return a default {} if null safety is an issue
     } catch (e) {
       _error = e.toString();
+      rethrow; // Optional: rethrow if the UI needs to handle the error
     } finally {
       _isLoading = false;
       notifyListeners();

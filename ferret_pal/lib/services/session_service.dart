@@ -9,8 +9,8 @@ class SessionService{
   static const String _baseUrl = 'http://10.0.2.2:5000/session';
 
   // Asynchronously starts the session by calling the /session/start_session route
-  Future<bool> startSession() async {
-    final url = Uri.parse('$_baseUrl/start_session');
+  Future<bool> startSession(String username) async {
+    final url = Uri.parse('$_baseUrl/$username/start_session');
     try{
       final response = await http.post(url);
       return response.statusCode == 200;
@@ -21,8 +21,8 @@ class SessionService{
   }
 
   // Asynchronously stops the session by calling the /session/stop_session route
-  Future<bool> stopSession() async {
-    final url = Uri.parse('$_baseUrl/stop_session');
+  Future<bool> stopSession(String username) async {
+    final url = Uri.parse('$_baseUrl/$username/stop_session');
     try{
       final response = await http.post(url);
       return response.statusCode == 200;
@@ -56,8 +56,8 @@ class SessionService{
     }
   }
 
-  Future<Map<String, dynamic>> fetchLastSession() async {
-    final url = Uri.parse('$_baseUrl/get_last_session');
+  Future<Map<String, dynamic>> fetchLastSession(String username) async {
+    final url = Uri.parse('$_baseUrl/$username/get_last_session');
     try {
       final response = await http.get(url);
       if (response.statusCode == 200) {

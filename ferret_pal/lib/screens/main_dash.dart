@@ -32,6 +32,7 @@ class _DashboardState extends State<Dashboard>{
     final profileViewModel = Provider.of<ProfileViewModel>(context, listen: false);
     await profileViewModel.getFullInfo();
     await profileViewModel.getBadgePreferences();
+    setState(() {});
   }
 
   void _refreshWidgets() {
@@ -65,7 +66,6 @@ class _DashboardState extends State<Dashboard>{
       case 'total_sessions_completed':
         return vm.totalSessionsCompleted.toString();
       case 'total_focus_time':
-      // Convert seconds or minutes nicely here if needed, for now just raw int
         return vm.totalFocusTime.toString();
       case 'good_posture_streak':
         return vm.goodPostureStreak.toString();
@@ -140,7 +140,8 @@ class _DashboardState extends State<Dashboard>{
               ),
             ),
             const SizedBox(height: 24),
-            LastSessionOverview(key: _lastSessionKey),
+            LastSessionOverview(key: _lastSessionKey,
+                username: profileViewModel.username),
             // more widgets here
           ],
         ),

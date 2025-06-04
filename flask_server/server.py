@@ -2,70 +2,61 @@ from flask import Flask, request, jsonify, Response
 from helpers import user_functions, session_functions
 import json
 import queue
+
 app = Flask(__name__)
 
-# PROFILE ROUTES
-@app.route('/user/save_profile', methods=['POST'])
-def save_profile():
-    print("miau")
+@app.route('/user/<username>/save_profile', methods=['POST'])
+def save_profile(username):
     data = request.json
     display_name = data.get('display_name')
-    profile_picture_path = data.get('profile_picture')
+    profile_picture = data.get('profile_picture')
+    if not display_name or not profile_picture:
+        return jsonify({'error': 'Missing fields'}), 400
+    user_functions.save_user_profile(username, display_name, profile_picture)
+    return jsonify({'message': 'Saved'}), 200
 
-    if not display_name or not profile_picture_path:
-        return jsonify({'error': 'Missing required fields'}), 400
-    
-    user_functions.save_user_profile(display_name, profile_picture_path)
-    return jsonify({'message': 'Profile saved successfully'}), 200
-
-@app.route('/user/check_profile_exists', methods=['GET'])
-def check_profile_exists():
-    exists = user_functions.check_user_exists()
+@app.route('/user/<username>/check_profile_exists', methods=['GET'])
+def check_profile_exists(username):
+    exists = user_functions.check_user_exists(username)
     return jsonify({'exists': exists}), 200
 
-@app.route('/user/get_user_info', methods=['GET'])
-def get_user_data():
-    user = user_functions.get_user_info()
-    if user is None: return jsonify({'message':'User not found'}), 404
-    return jsonify(user), 200
-
-@app.route('/user/get_profile', methods=['GET'])
-def get_profile():
-    user = user_functions.get_full_user_info()
+@app.route('/user/<username>/get_user_info', methods=['GET'])
+def get_user_info(username):
+    user = user_functions.get_user_info(username)
     if user is None:
-        return jsonify({'message': 'User not found'}), 404
+        return jsonify({'error': 'User not found'}), 404
     return jsonify(user), 200
 
-@app.route('/user/get_badge_preferences', methods=['GET'])
-def get_badge_preferences():
-    badges_info = user_functions.get_badges_info()
-    if badges_info is None:
-        return jsonify({'message': 'User or badges not found'}), 404
-    return jsonify(badges_info), 200
+@app.route('/user/<username>/get_profile', methods=['GET'])
+def get_profile(username):
+    user = user_functions.get_full_user_info(username)
+    if user is None:
+        return jsonify({'error': 'User not found'}), 404
+    return jsonify(user), 200
 
+@app.route('/user/<username>/get_badge_preferences', methods=['GET'])
+def get_badge_preferences(username):
+    badges = user_functions.get_badges_info(username)
+    if badges is None:
+        return jsonify({'error': 'Not found'}), 404
+    return jsonify(badges), 200
 
-@app.route('/user/save_badge_preferences', methods=['POST'])
-def save_badge_preferences():
-    data = request.json
-    badges = data.get('badges')
-    if badges is None or not isinstance(badges, list):
-        return jsonify({'error': 'Invalid or missing badges data'}), 400
+@app.route('/user/<username>/save_badge_preferences', methods=['POST'])
+def save_badge_preferences(username):
+    badges = request.json.get('badges')
+    if not isinstance(badges, list):
+        return jsonify({'error': 'Invalid badges'}), 400
+    success = user_functions.save_badges_info(username, badges)
+    return (jsonify({'message': 'Saved'}), 200) if success else (jsonify({'error': 'Failed'}), 500)
 
-    success = user_functions.save_badges_info(badges)
-    if not success:
-        return jsonify({'error': 'Failed to save badges'}), 500
-
-    return jsonify({'message': 'Badge preferences saved successfully'}), 200
-
-# SESSION ROUTES
-@app.route('/session/start_session', methods=['POST'])
-def start_session():
-    session_functions.start_session()
+@app.route('/session/<username>/start_session', methods=['POST'])
+def start_session(username):
+    session_functions.start_session(username)
     return jsonify({"message": "Session started"}), 200
 
-@app.route('/session/stop_session', methods=['POST'])
-def stop_session():
-    session_functions.stop_session()
+@app.route('/session/<username>/stop_session', methods=['POST'])
+def stop_session(username):
+    session_functions.stop_session(username)
     return jsonify({"message": "Session stopped"}), 200
 
 @app.route('/session/posture_stream', methods=['GET'])
@@ -76,15 +67,14 @@ def posture_stream():
         try:
             while True:
                 is_good = q.get()
-                print(f"Sending SSE: {is_good}")
                 yield f"data: {json.dumps({'is_good': is_good})}\n\n"
         except GeneratorExit:
             session_functions.clients.remove(q)
     return Response(event_stream(), mimetype='text/event-stream')
 
-@app.route('/session/get_last_session', methods=['GET'])
-def get_last_session():
-    return session_functions.get_last_session_data()
+@app.route('/session/<username>/get_last_session', methods=['GET'])
+def get_last_session(username):
+    return session_functions.get_last_session_data(username)
 
 if __name__ == '__main__':
     app.run(debug=True)
