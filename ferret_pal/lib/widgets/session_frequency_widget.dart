@@ -35,8 +35,12 @@ class _SessionFrequencyChartState extends State<SessionFrequencyChart> {
     return FutureBuilder<List<DateTime>>(
       future: _sessionsFuture,
       builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) return const CircularProgressIndicator();
-        if (!snapshot.hasData || snapshot.data!.isEmpty) return const Text("No session data available");
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return const CircularProgressIndicator();
+        }
+        if (!snapshot.hasData || snapshot.data!.isEmpty) {
+          return const Text("No session data available");
+        }
 
         final groupedData = _groupSessions(snapshot.data!);
 
@@ -47,6 +51,7 @@ class _SessionFrequencyChartState extends State<SessionFrequencyChart> {
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -81,7 +86,15 @@ class _SessionFrequencyChartState extends State<SessionFrequencyChart> {
                     )
                   ],
                 ),
-                const SizedBox(height: 16),
+                const SizedBox(height: 12),
+                if (_selectedMode == SessionViewMode.daily)
+                  Padding(
+                    padding: const EdgeInsets.only(bottom: 8.0),
+                    child: Text(
+                      _getMostFocusedHourLabel(groupedData),
+                      style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+                    ),
+                  ),
                 AspectRatio(
                   aspectRatio: 1.7,
                   child: _selectedMode == SessionViewMode.daily
@@ -103,43 +116,25 @@ class _SessionFrequencyChartState extends State<SessionFrequencyChart> {
         maxY: (data.reduce((a, b) => a > b ? a : b) * 1.2).toDouble(),
         titlesData: FlTitlesData(
           bottomTitles: AxisTitles(
-            sideTitles: SideTitles(
-              showTitles: true,
-              interval: 1,
-              getTitlesWidget: (value, _) {
-                const labels = {
-                  0: '00:00',
-                  6: '06:00',
-                  12: '12:00',
-                  18: '18:00',
-                  23: '23:00',
-                };
-                if (labels.containsKey(value.toInt())) {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 8.0),
-                    child: Text(labels[value.toInt()]!, style: const TextStyle(fontSize: 10)),
-                  );
-                }
-                return const SizedBox.shrink();
-              },
-            ),
+            sideTitles: SideTitles(showTitles: false),
           ),
+          topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
           leftTitles: AxisTitles(
             sideTitles: SideTitles(
               showTitles: true,
               interval: 5,
+              reservedSize: 32,
               getTitlesWidget: (value, _) {
-                const labels = [5, 10, 15, 20, 30];
-                if (labels.contains(value.toInt())) {
-                  return Text(value.toInt().toString(), style: const TextStyle(fontSize: 10));
-                }
-                return const SizedBox.shrink();
+                return Text(
+                  value.toInt().toString(),
+                  style: const TextStyle(fontSize: 10),
+                );
               },
-              reservedSize: 28,
             ),
           ),
         ),
-        gridData: FlGridData(show: true),
+        gridData: FlGridData(show: false),
         borderData: FlBorderData(show: false),
         lineBarsData: [
           LineChartBarData(
@@ -190,15 +185,26 @@ class _SessionFrequencyChartState extends State<SessionFrequencyChart> {
             ),
           ),
           leftTitles: AxisTitles(
-            sideTitles: SideTitles(showTitles: true),
+            sideTitles: SideTitles(
+              showTitles: true,
+              interval: 5,
+              reservedSize: 28,
+              getTitlesWidget: (value, _) {
+                return Text(
+                  value.toInt().toString(),
+                  style: const TextStyle(fontSize: 10),
+                );
+              },
+            ),
           ),
+          topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
         ),
-        gridData: FlGridData(show: true),
+        gridData: FlGridData(show: false),
         borderData: FlBorderData(show: false),
       ),
     );
   }
-
 
   List<int> _groupSessions(List<DateTime> sessions) {
     final now = DateTime.now();
@@ -244,5 +250,11 @@ class _SessionFrequencyChartState extends State<SessionFrequencyChart> {
       SessionViewMode.weekly => ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'][index],
       SessionViewMode.monthly => 'W${index + 1}',
     };
+  }
+
+  String _getMostFocusedHourLabel(List<int> data) {
+    final maxIndex = data.indexWhere((e) => e == data.reduce((a, b) => a > b ? a : b));
+    final hourStr = maxIndex.toString().padLeft(2, '0');
+    return "Most focused at $hourStr:00 hour";
   }
 }

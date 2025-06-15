@@ -1,0 +1,472 @@
+{
+  "start_time": "2025-06-15T08:03:45.492094",
+  "offset": 29025.0,
+  "posture_events": [
+    {
+      "timestamp": "2025-06-15T08:03:45.492094",
+      "value": 300,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:03:46.492094",
+      "value": 215,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:03:47.492094",
+      "value": 243,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:03:48.492094",
+      "value": 268,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:03:49.492094",
+      "value": 219,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:03:50.492094",
+      "value": 292,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:03:51.492094",
+      "value": 201,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:03:53.492094",
+      "value": 218,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:03:56.492094",
+      "value": 286,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:03:57.492094",
+      "value": 252,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:03:58.492094",
+      "value": 201,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:04:00.492094",
+      "value": 275,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:01.492094",
+      "value": 291,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:02.492094",
+      "value": 212,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:03.492094",
+      "value": 188,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:04:05.492094",
+      "value": 214,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:06.492094",
+      "value": 202,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:07.492094",
+      "value": 295,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:08.492094",
+      "value": 295,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:09.492094",
+      "value": 300,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:10.492094",
+      "value": 234,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:04:11.492094",
+      "value": 211,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:12.492094",
+      "value": 204,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:13.492094",
+      "value": 236,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:04:14.492094",
+      "value": 201,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:15.492094",
+      "value": 202,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:16.492094",
+      "value": 191,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:04:18.492094",
+      "value": 225,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:19.492094",
+      "value": 283,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:20.492094",
+      "value": 238,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:04:23.492094",
+      "value": 207,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:24.492094",
+      "value": 245,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:25.492094",
+      "value": 239,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:04:27.492094",
+      "value": 236,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:28.492094",
+      "value": 234,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:04:30.492094",
+      "value": 228,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:31.492094",
+      "value": 229,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:04:34.492094",
+      "value": 238,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:04:36.492094",
+      "value": 202,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:04:37.492094",
+      "value": 218,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:04:38.492094",
+      "value": 226,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:39.492094",
+      "value": 238,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:04:41.492094",
+      "value": 202,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:42.492094",
+      "value": 294,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:43.492094",
+      "value": 216,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:04:44.492094",
+      "value": 292,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:45.492094",
+      "value": 238,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:46.492094",
+      "value": 279,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:47.492094",
+      "value": 246,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:48.492094",
+      "value": 268,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:49.492094",
+      "value": 288,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:50.492094",
+      "value": 204,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:51.492094",
+      "value": 241,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:52.492094",
+      "value": 272,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:53.492094",
+      "value": 237,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:04:54.492094",
+      "value": 248,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:55.492094",
+      "value": 203,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:04:56.492094",
+      "value": 238,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:04:59.492094",
+      "value": 237,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:05:00.492094",
+      "value": 220,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:05:01.492094",
+      "value": 275,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:05:02.492094",
+      "value": 274,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:05:03.492094",
+      "value": 203,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:05:04.492094",
+      "value": 208,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:05:05.492094",
+      "value": 219,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:05:06.492094",
+      "value": 236,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:05:08.492094",
+      "value": 229,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:05:09.492094",
+      "value": 232,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:05:10.492094",
+      "value": 221,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T08:05:11.492094",
+      "value": 208,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T08:05:14.492094",
+      "value": 213,
+      "is_good": true
+    }
+  ],
+  "bad_posture_segments": [
+    {
+      "start": "2025-06-15T08:03:51.492094",
+      "end": "2025-06-15T08:03:53.492094",
+      "duration": 2
+    },
+    {
+      "start": "2025-06-15T08:03:53.492094",
+      "end": "2025-06-15T08:03:56.492094",
+      "duration": 3
+    },
+    {
+      "start": "2025-06-15T08:03:58.492094",
+      "end": "2025-06-15T08:04:00.492094",
+      "duration": 2
+    },
+    {
+      "start": "2025-06-15T08:04:03.492094",
+      "end": "2025-06-15T08:04:05.492094",
+      "duration": 2
+    },
+    {
+      "start": "2025-06-15T08:04:10.492094",
+      "end": "2025-06-15T08:04:11.492094",
+      "duration": 1
+    },
+    {
+      "start": "2025-06-15T08:04:13.492094",
+      "end": "2025-06-15T08:04:14.492094",
+      "duration": 1
+    },
+    {
+      "start": "2025-06-15T08:04:16.492094",
+      "end": "2025-06-15T08:04:18.492094",
+      "duration": 2
+    },
+    {
+      "start": "2025-06-15T08:04:20.492094",
+      "end": "2025-06-15T08:04:23.492094",
+      "duration": 3
+    },
+    {
+      "start": "2025-06-15T08:04:25.492094",
+      "end": "2025-06-15T08:04:27.492094",
+      "duration": 2
+    },
+    {
+      "start": "2025-06-15T08:04:28.492094",
+      "end": "2025-06-15T08:04:30.492094",
+      "duration": 2
+    },
+    {
+      "start": "2025-06-15T08:04:31.492094",
+      "end": "2025-06-15T08:04:34.492094",
+      "duration": 3
+    },
+    {
+      "start": "2025-06-15T08:04:34.492094",
+      "end": "2025-06-15T08:04:36.492094",
+      "duration": 2
+    },
+    {
+      "start": "2025-06-15T08:04:36.492094",
+      "end": "2025-06-15T08:04:37.492094",
+      "duration": 1
+    },
+    {
+      "start": "2025-06-15T08:04:37.492094",
+      "end": "2025-06-15T08:04:38.492094",
+      "duration": 1
+    },
+    {
+      "start": "2025-06-15T08:04:39.492094",
+      "end": "2025-06-15T08:04:41.492094",
+      "duration": 2
+    },
+    {
+      "start": "2025-06-15T08:04:43.492094",
+      "end": "2025-06-15T08:04:44.492094",
+      "duration": 1
+    },
+    {
+      "start": "2025-06-15T08:04:53.492094",
+      "end": "2025-06-15T08:04:54.492094",
+      "duration": 1
+    },
+    {
+      "start": "2025-06-15T08:04:56.492094",
+      "end": "2025-06-15T08:04:59.492094",
+      "duration": 3
+    },
+    {
+      "start": "2025-06-15T08:05:06.492094",
+      "end": "2025-06-15T08:05:08.492094",
+      "duration": 2
+    },
+    {
+      "start": "2025-06-15T08:05:09.492094",
+      "end": "2025-06-15T08:05:10.492094",
+      "duration": 1
+    },
+    {
+      "start": "2025-06-15T08:05:11.492094",
+      "end": "2025-06-15T08:05:14.492094",
+      "duration": 3
+    }
+  ],
+  "end_time": "2025-06-15T08:05:15.492094",
+  "duration_seconds": 90,
+  "total_breaks": 21,
+  "total_good_posture_time": 50
+}

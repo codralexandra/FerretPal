@@ -1,0 +1,82 @@
+{
+  "start_time": "2025-06-15T10:00:25.014414",
+  "offset": 36025.0,
+  "posture_events": [
+    {
+      "timestamp": "2025-06-15T10:00:25.014414",
+      "value": 272,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T10:00:26.014414",
+      "value": 207,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T10:00:29.014414",
+      "value": 237,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T10:00:30.014414",
+      "value": 228,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T10:00:31.014414",
+      "value": 237,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T10:00:32.014414",
+      "value": 297,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T10:00:33.014414",
+      "value": 233,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T10:00:34.014414",
+      "value": 196,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-15T10:00:37.014414",
+      "value": 290,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T10:00:38.014414",
+      "value": 298,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-15T10:00:39.014414",
+      "value": 203,
+      "is_good": true
+    }
+  ],
+  "bad_posture_segments": [
+    {
+      "start": "2025-06-15T10:00:26.014414",
+      "end": "2025-06-15T10:00:29.014414",
+      "duration": 3
+    },
+    {
+      "start": "2025-06-15T10:00:30.014414",
+      "end": "2025-06-15T10:00:31.014414",
+      "duration": 1
+    },
+    {
+      "start": "2025-06-15T10:00:34.014414",
+      "end": "2025-06-15T10:00:37.014414",
+      "duration": 3
+    }
+  ],
+  "end_time": "2025-06-15T10:00:40.014414",
+  "duration_seconds": 15,
+  "total_breaks": 3,
+  "total_good_posture_time": 8
+}
