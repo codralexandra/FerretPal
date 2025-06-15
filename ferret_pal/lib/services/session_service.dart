@@ -70,4 +70,22 @@ class SessionService{
       rethrow;
     }
   }
+
+  Future<List<DateTime>> fetchAllSessionTimestamps(String username) async {
+    final url = Uri.parse('$_baseUrl/$username/get_all_sessions');
+    try {
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        final data = json.decode(response.body);
+        return (data['sessions'] as List)
+            .map<DateTime>((s) => DateTime.parse(s))
+            .toList();
+      } else {
+        throw Exception('Failed to load sessions (status: ${response.statusCode})');
+      }
+    } catch (e) {
+      print('Error fetching all sessions: $e');
+      rethrow;
+    }
+  }
 }

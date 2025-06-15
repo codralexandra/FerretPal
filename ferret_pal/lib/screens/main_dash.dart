@@ -1,13 +1,16 @@
-import 'package:ferret_pal/widgets/badge_selector.dart';
-import 'package:ferret_pal/widgets/badge_widget.dart';
-import 'package:ferret_pal/widgets/last_session_overview.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/badge_selector.dart';
+import '../widgets/badge_widget.dart';
+import '../widgets/last_session_overview.dart';
+import '../widgets/session_frequency_widget.dart';
+
 import '../view_models/profile_vm.dart';
 
 import '../screens/session_screen.dart';
+import '../screens/login_screen.dart';
 
 /// Main dashboard of the application
 class Dashboard extends StatefulWidget{
@@ -98,6 +101,12 @@ class _DashboardState extends State<Dashboard>{
     final profileViewModel = Provider.of<ProfileViewModel>(context);
     return Scaffold(
       appBar: AppBar(
+        leading: Builder(
+          builder: (context) => IconButton(
+            icon: const Icon(Icons.menu),
+            onPressed: () => Scaffold.of(context).openDrawer(),
+          ),
+        ),
         title: Text(
           'Hello, ${profileViewModel.displayName}!',
           style: Theme.of(context).textTheme.titleLarge?.copyWith(
@@ -111,6 +120,50 @@ class _DashboardState extends State<Dashboard>{
             onPressed: _openBadgeSelector,
           ),
         ],
+      ),
+      drawer: Drawer(
+        child: ListView(
+          padding: EdgeInsets.zero,
+          children: [
+            DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.lightGreen,
+              ),
+              child: Text(
+                'FerretPal',
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.white),
+              ),
+            ),
+            ListTile(
+              leading: Icon(Icons.person),
+              title: Text('Profile'),
+              onTap: () {
+                Navigator.pop(context);
+                // Navigate to profile screen
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.logout),
+              title: Text('Log out'),
+              onTap: () {
+                Navigator.pop(context);
+                // Log out (go back to profile setup screen)
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
+                );
+              },
+            ),
+            ListTile(
+              leading: Icon(Icons.clear),
+              title: Text('Clear logs'),
+              onTap: () {
+                Navigator.pop(context);
+                // Clear stored session logs
+              },
+            ),
+          ],
+        ),
       ),
       body: RefreshIndicator(
         onRefresh: () async {
@@ -140,9 +193,13 @@ class _DashboardState extends State<Dashboard>{
               ),
             ),
             const SizedBox(height: 24),
-            LastSessionOverview(key: _lastSessionKey,
-                username: profileViewModel.username),
-            // more widgets here
+            Text('Your Widgets', style: Theme.of(context).textTheme.headlineSmall),
+            const SizedBox(height: 24),
+            LastSessionOverview(
+              key: _lastSessionKey,
+              username: profileViewModel.username,
+            ),
+            SessionFrequencyChart(username: profileViewModel.username),
           ],
         ),
       ),
@@ -155,6 +212,10 @@ class _DashboardState extends State<Dashboard>{
         },
         icon: const Icon(Icons.access_time),
         label: const Text('Start Session'),
+        backgroundColor: Colors.lightGreen,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(30),
+        ),
       ),
     );
   }

@@ -55,8 +55,7 @@ class LastSessionOverviewState extends State<LastSessionOverview> {
         final startTime = DateTime.parse(session['start_time']);
         final offsetValue = (session['offset'] as num).toDouble();
 
-        // Simplify data by downsampling
-        final downsampleFactor = 3; // adjust for desired simplification
+        final downsampleFactor = 3;
         final simplifiedEvents = <Map<String, dynamic>>[];
         for (int i = 0; i < postureEvents.length; i += downsampleFactor) {
           simplifiedEvents.add(postureEvents[i]);
@@ -86,10 +85,11 @@ class LastSessionOverviewState extends State<LastSessionOverview> {
           child: Padding(
             padding: const EdgeInsets.all(16),
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
                   'Last Session Overview',
-                  style: Theme.of(context).textTheme.titleMedium,
+                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 12),
                 AspectRatio(

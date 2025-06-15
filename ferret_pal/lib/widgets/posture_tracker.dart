@@ -23,9 +23,7 @@ class _PostureTrackerState extends State<PostureTracker> {
   @override
   void initState() {
     super.initState();
-    // Grab your VM once:
     final vm = Provider.of<SessionViewModel>(context, listen: false);
-    // Subscribe immediately to the postureStream:
     _postureSubscription = vm.postureStream.listen((good) {
       print("Got posture event: $good");
       if (mounted && widget.isRunning && !widget.isPaused) {

@@ -76,5 +76,9 @@ def posture_stream():
 def get_last_session(username):
     return session_functions.get_last_session_data(username)
 
+@app.route('/session/<username>/get_all_sessions', methods=['GET'])
+def get_all_sessions(username):
+    return session_functions.get_all_sessions(username)
+
 if __name__ == '__main__':
     app.run(debug=True)

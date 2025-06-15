@@ -70,6 +70,15 @@ class SessionViewModel extends ChangeNotifier{
     }
   }
 
+  Future<List<DateTime>> loadAllSessionTimestamps(String username) async {
+    try {
+      return await _sessionService.fetchAllSessionTimestamps(username);
+    } catch (e) {
+      print('ViewModel Error: $e');
+      return [];
+    }
+  }
+
   @override
   void dispose(){
     _postureSubscription?.cancel();

@@ -184,3 +184,19 @@ def get_last_session_data(username):
     with open(session_files[0], "r") as f:
         session = json.load(f)
     return jsonify(session), 200
+
+def get_all_sessions(username):
+    log_dir = get_user_session_dir(username)
+    session_files = sorted(glob.glob(os.path.join(log_dir, "session_*.json")))
+    if not session_files:
+        return jsonify({"sessions": []}), 200
+
+    session_data = []
+    for file in session_files:
+        with open(file, "r") as f:
+            data = json.load(f)
+            if "start_time" in data:
+                session_data.append(data["start_time"])
+
+    return jsonify({"sessions": session_data}), 200
+

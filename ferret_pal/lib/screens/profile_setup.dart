@@ -92,7 +92,7 @@ class _ProfileSetupState extends State<ProfileSetup> {
               },
               children: [
                 _buildSlide(
-                  title: "Welcome to PosturePal",
+                  title: "Welcome to FerretPal",
                   content: "Improve your posture using our Pomodoro-style tracker.",
                 ),
                 _buildSlide(

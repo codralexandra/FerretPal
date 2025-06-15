@@ -10,3 +10,4 @@ void loop() {
   Serial.println(flex);
   delay(200);
 }
+
