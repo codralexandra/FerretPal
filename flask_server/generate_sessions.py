@@ -57,7 +57,7 @@ def main():
     parser.add_argument('--count', type=int, default=1, help="Numărul de sesiuni generate")
     parser.add_argument('--start-hour', type=int, default=9, help="Ora de start pentru prima sesiune")
     parser.add_argument('--duration', type=int, default=60, help="Durata fiecărei sesiuni (secunde)")
-    parser.add_argument('--output', type=str, default="data/ako/session_logs", help="Folder de output")
+    parser.add_argument('--output', type=str, default="data/test/session_logs", help="Folder de output")
 
     args = parser.parse_args()
 

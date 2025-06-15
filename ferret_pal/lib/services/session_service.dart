@@ -88,4 +88,15 @@ class SessionService{
       rethrow;
     }
   }
+
+  Future<bool> clearSessions(String username) async {
+    final url = Uri.parse('$_baseUrl/$username/clear_sessions');
+    try {
+      final response = await http.post(url);
+      return response.statusCode == 200;
+    } catch (e) {
+      print('Error clearing sessions: $e');
+      return false;
+    }
+  }
 }

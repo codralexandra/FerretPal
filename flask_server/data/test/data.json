@@ -11,6 +11,10 @@
         "last_achievement_unlocked": null,
         "first_session_date": null,
         "consecutive_days_used": 0,
-        "badges": []
+        "badges": [
+            "total_focus_time",
+            "total_sessions_completed",
+            "consecutive_days_used"
+        ]
     }
 }

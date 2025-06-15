@@ -79,6 +79,21 @@ class SessionViewModel extends ChangeNotifier{
     }
   }
 
+  Future<bool> clearSessions(String username) async {
+    try {
+      final success = await _sessionService.clearSessions(username);
+      if (success) {
+        // Optionally, clear cached data if any
+        _lastSession = null;
+        notifyListeners();
+      }
+      return success;
+    } catch (e) {
+      print('Failed to clear sessions in ViewModel: $e');
+      return false;
+    }
+  }
+
   @override
   void dispose(){
     _postureSubscription?.cancel();

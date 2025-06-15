@@ -8,9 +8,11 @@ import '../widgets/last_session_overview.dart';
 import '../widgets/session_frequency_widget.dart';
 
 import '../view_models/profile_vm.dart';
+import '../view_models/session_vm.dart';
 
 import '../screens/session_screen.dart';
 import '../screens/login_screen.dart';
+import '../screens/profile_screen.dart';
 
 /// Main dashboard of the application
 class Dashboard extends StatefulWidget{
@@ -138,6 +140,10 @@ class _DashboardState extends State<Dashboard>{
               onTap: () {
                 Navigator.pop(context);
                 // Navigate to profile screen
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const ProfilePage()),
+                );
               },
             ),
             ListTile(
@@ -155,9 +161,44 @@ class _DashboardState extends State<Dashboard>{
             ListTile(
               leading: Icon(Icons.clear),
               title: Text('Clear logs'),
-              onTap: () {
+              onTap: () async {
                 Navigator.pop(context);
-                // Clear stored session logs
+
+                final sessionViewModel = Provider.of<SessionViewModel>(context, listen: false);
+
+                final confirmed = await showDialog<bool>(
+                  context: context,
+                  builder: (context) => AlertDialog(
+                    title: Text('Confirm Clear Logs'),
+                    content: Text('Are you sure you want to clear all session logs? This action cannot be undone.'),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(false),
+                        child: Text('No'),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.of(context).pop(true),
+                        child: Text('Yes'),
+                      ),
+                    ],
+                  ),
+                );
+
+                if (confirmed == true) {
+                  final username = Provider.of<ProfileViewModel>(context, listen: false).username;
+
+                  final success = await sessionViewModel.clearSessions(username);
+
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      content: Text(success ? 'Session logs cleared.' : 'Failed to clear session logs.'),
+                    ),
+                  );
+
+                  _refreshWidgets();
+                  setState(() {
+                  });
+                }
               },
             ),
           ],

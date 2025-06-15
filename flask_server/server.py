@@ -80,5 +80,9 @@ def get_last_session(username):
 def get_all_sessions(username):
     return session_functions.get_all_sessions(username)
 
+@app.route('/session/<username>/clear_sessions', methods=['POST'])
+def clear_user_sessions(username):
+    return session_functions.clear_sessions(username)
+
 if __name__ == '__main__':
     app.run(debug=True)

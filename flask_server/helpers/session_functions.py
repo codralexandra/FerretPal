@@ -200,3 +200,19 @@ def get_all_sessions(username):
 
     return jsonify({"sessions": session_data}), 200
 
+def clear_sessions(username):
+    log_dir = get_user_session_dir(username)
+    session_files = glob.glob(os.path.join(log_dir, "session_*.json"))
+
+    deleted_files = 0
+    for file_path in session_files:
+        try:
+            os.remove(file_path)
+            deleted_files += 1
+        except Exception as e:
+            print(f"Failed to delete {file_path}: {e}")
+
+    return jsonify({
+        "status": "success",
+        "message": f"{deleted_files} session(s) deleted."
+    }), 200
