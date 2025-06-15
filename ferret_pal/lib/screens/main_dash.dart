@@ -100,6 +100,7 @@ class _DashboardState extends State<Dashboard>{
   Widget build(BuildContext context) {
     final profileViewModel = Provider.of<ProfileViewModel>(context);
     return Scaffold(
+      backgroundColor: Color(0xFFede6e8),
       appBar: AppBar(
         leading: Builder(
           builder: (context) => IconButton(
@@ -115,7 +116,7 @@ class _DashboardState extends State<Dashboard>{
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.badge),
+            icon: Icon(Icons.workspace_premium),
             tooltip: 'Select Badges',
             onPressed: _openBadgeSelector,
           ),
@@ -126,12 +127,9 @@ class _DashboardState extends State<Dashboard>{
           padding: EdgeInsets.zero,
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.lightGreen,
-              ),
               child: Text(
                 'FerretPal',
-                style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.white),
+                style: Theme.of(context).textTheme.headlineMedium?.copyWith(color: Colors.black),
               ),
             ),
             ListTile(
@@ -200,6 +198,7 @@ class _DashboardState extends State<Dashboard>{
               username: profileViewModel.username,
             ),
             SessionFrequencyChart(username: profileViewModel.username),
+            const SizedBox(height: 50),
           ],
         ),
       ),
