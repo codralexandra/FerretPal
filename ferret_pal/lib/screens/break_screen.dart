@@ -1,6 +1,9 @@
 import 'dart:async';
+import 'package:ferret_pal/widgets/posture_tracker.dart';
 import 'package:flutter/material.dart';
+import 'package:confetti/confetti.dart';
 
+import '../screens/main_dash.dart';
 import '../widgets/session_timer.dart';
 
 class BreakScreen extends StatefulWidget{
@@ -15,9 +18,19 @@ class _BreakScreenState extends State<BreakScreen>{
   late int totalSeconds = 1*60;
   late int remainingSeconds;
   Timer? breakTimer;
+  final confettiController = ConfettiController();
+
+  void playConfettiAnimation() async{
+    confettiController.play();
+
+    await Future.delayed(Duration(seconds: 5));
+
+    confettiController.stop();
+  }
 
   @override
   void initState(){
+    posturePlayer.stop();
     super.initState();
     remainingSeconds = totalSeconds;
 
@@ -30,6 +43,8 @@ class _BreakScreenState extends State<BreakScreen>{
         _handleBreakComplete();
       }
     });
+
+    playConfettiAnimation();
   }
 
   void _handleBreakComplete(){
@@ -42,6 +57,7 @@ class _BreakScreenState extends State<BreakScreen>{
   @override
   void dispose(){
     breakTimer?.cancel();
+    confettiController.dispose();
     super.dispose();
   }
 
@@ -51,6 +67,7 @@ class _BreakScreenState extends State<BreakScreen>{
     String timeDisplay =
         '${(remainingSeconds ~/ 60).toString().padLeft(2, '0')}:${(remainingSeconds % 60).toString().padLeft(2,'0')}';
     return Scaffold(
+      backgroundColor: Color(0xFFede6e8),
       appBar: AppBar(title: Text("Break Time!")),
       body: Center(
         child: Column(
@@ -65,10 +82,34 @@ class _BreakScreenState extends State<BreakScreen>{
             SizedBox(height: 40),
             ElevatedButton(
               onPressed: (){
-                Navigator.of(context).popUntil((route)=>route.isFirst);
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => const Dashboard()),
+                );
               },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.lightGreen,
+                foregroundColor: Colors.white,
+                padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+                textStyle: TextStyle(fontSize: 18),
+              ),
               child: Text("Back to Dashboard"),
             ),
+            ConfettiWidget(
+              confettiController: confettiController,
+              blastDirectionality: BlastDirectionality.explosive,
+              shouldLoop: false,
+              emissionFrequency: 0.05,
+              numberOfParticles: 20,
+              gravity: 0.1,
+              colors: [
+                Colors.green,
+                Colors.lightGreen,
+                Colors.greenAccent,
+                Color(0xFF2E7D32), // dark green
+                Color(0xFF66BB6A), // medium green
+              ],
+            )
           ],
         ),
       ),

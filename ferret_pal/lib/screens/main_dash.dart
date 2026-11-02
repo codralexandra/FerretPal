@@ -24,6 +24,7 @@ class Dashboard extends StatefulWidget{
 
 class _DashboardState extends State<Dashboard>{
   final GlobalKey<LastSessionOverviewState> _lastSessionKey = GlobalKey();
+  final GlobalKey<SessionFrequencyChartState> _sessionChartKey = GlobalKey();
 
   @override
   void initState(){
@@ -42,6 +43,7 @@ class _DashboardState extends State<Dashboard>{
 
   void _refreshWidgets() {
     _lastSessionKey.currentState?.refreshData();
+    _sessionChartKey.currentState?.refreshData();
     setState(() {});
   }
 
@@ -238,7 +240,9 @@ class _DashboardState extends State<Dashboard>{
               key: _lastSessionKey,
               username: profileViewModel.username,
             ),
-            SessionFrequencyChart(username: profileViewModel.username),
+            SessionFrequencyChart(
+                key: _sessionChartKey,
+                username: profileViewModel.username),
             const SizedBox(height: 50),
           ],
         ),

@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:confetti/confetti.dart';
 import 'package:ferret_pal/screens/break_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,13 +28,11 @@ class _SessionScreenState extends State<SessionScreen>{
   bool isPaused = false;
   bool isOnBreak = false;
   bool endedManually = false;
+  bool showPostureTracker = true;
 
   // Session details
   DateTime? startTime;
   bool isLoading = false;
-
-  // Confetti controls
-  final confettiController = ConfettiController();
 
   // Current user
   String username = "";
@@ -124,6 +121,7 @@ class _SessionScreenState extends State<SessionScreen>{
 
   void pauseTimer() {
     timer?.cancel();
+    posturePlayer.stop();
     setState((){
       isPaused = true;
     });
@@ -148,11 +146,13 @@ class _SessionScreenState extends State<SessionScreen>{
 
   void manualStop(){
     endedManually = true;
+    posturePlayer.stop();
     stopTimer();
   }
 
   void stopTimer() async{
     timer?.cancel();
+    posturePlayer.stop();
 
     await stopSession();
 
@@ -161,16 +161,12 @@ class _SessionScreenState extends State<SessionScreen>{
       remainingSeconds = 0;
       isRunning = false;
       isPaused = false;
+      showPostureTracker = false;
     });
 
     if(!endedManually){
-      confettiController.play();
-
-      await Future.delayed(Duration(seconds: 5));
-
-      confettiController.stop();
-
       if(mounted){
+        posturePlayer.stop();
         Navigator.push(
           context,
           MaterialPageRoute(
@@ -178,7 +174,7 @@ class _SessionScreenState extends State<SessionScreen>{
               onBreakEnd: (){
                 Navigator.pop(context);
                 setState((){
-                  // blank for now
+                  showPostureTracker = true;
                 });
               },
             ),
@@ -192,7 +188,6 @@ class _SessionScreenState extends State<SessionScreen>{
   @override
   void dispose(){
     super.dispose();
-    confettiController.dispose();
   }
 
   @override
@@ -210,6 +205,7 @@ class _SessionScreenState extends State<SessionScreen>{
     }
 
     return Scaffold(
+      backgroundColor: Color(0xFFede6e8),
       appBar: AppBar(title: Text("Start a work session!")),
       body: Stack(
         children: [
@@ -217,7 +213,8 @@ class _SessionScreenState extends State<SessionScreen>{
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                PostureTracker(isRunning: isRunning, isPaused: isPaused),
+                if(showPostureTracker)
+                  PostureTracker(isRunning: isRunning, isPaused: isPaused),
                 SizedBox(height: 40),
                 SessionTimer(progress: progress, timeDisplay: timeDisplay),
                 SizedBox(height: 20),
@@ -233,14 +230,6 @@ class _SessionScreenState extends State<SessionScreen>{
                   onHourChange: (value) => setState(() => selectedHours = value),
                   onMinuteChange: (value) => setState(() => selectedMinutes = value),
                 ),
-                ConfettiWidget(
-                  confettiController: confettiController,
-                  blastDirectionality: BlastDirectionality.explosive,
-                  shouldLoop: false,
-                  emissionFrequency: 0.05,
-                  numberOfParticles: 20,
-                  gravity: 0.1,
-                )
               ],
             ),
           )

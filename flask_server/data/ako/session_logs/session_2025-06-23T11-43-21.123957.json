@@ -1,0 +1,91 @@
+{
+  "start_time": "2025-06-23T11:43:21.123957",
+  "offset": 369.76666666666665,
+  "posture_events": [
+    {
+      "timestamp": "2025-06-23T11:43:21.325160",
+      "value": 359,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-23T11:43:21.526365",
+      "value": 359,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-23T11:43:21.727967",
+      "value": 359,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-23T11:43:21.928527",
+      "value": 359,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-23T11:43:22.129548",
+      "value": 358,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-23T11:43:22.330233",
+      "value": 359,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-23T11:43:22.530804",
+      "value": 358,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-23T11:43:22.731507",
+      "value": 358,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-23T11:43:22.932147",
+      "value": 358,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-23T11:43:23.133089",
+      "value": 358,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-23T11:43:23.334108",
+      "value": 358,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-23T11:43:23.534828",
+      "value": 358,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-23T11:43:23.735687",
+      "value": 358,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-23T11:43:23.936635",
+      "value": 358,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-23T11:43:24.137289",
+      "value": 357,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-23T11:43:24.338109",
+      "value": 358,
+      "is_good": false
+    }
+  ],
+  "bad_posture_segments": [],
+  "end_time": "2025-06-23T11:43:24.528562",
+  "duration_seconds": 3,
+  "total_breaks": 0,
+  "total_good_posture_time": 0
+}

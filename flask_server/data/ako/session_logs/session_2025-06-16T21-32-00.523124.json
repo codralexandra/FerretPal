@@ -1,0 +1,282 @@
+{
+  "start_time": "2025-06-16T21:32:00.523124",
+  "offset": 244.96666666666667,
+  "posture_events": [
+    {
+      "timestamp": "2025-06-16T21:32:00.725269",
+      "value": 173,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:00.926048",
+      "value": 167,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:01.126920",
+      "value": 163,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:01.327646",
+      "value": 168,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:01.528620",
+      "value": 171,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:01.729566",
+      "value": 206,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:01.930319",
+      "value": 234,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:02.130982",
+      "value": 241,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:02.331348",
+      "value": 243,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:02.531974",
+      "value": 243,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:02.732478",
+      "value": 242,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:02.933024",
+      "value": 226,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:03.133838",
+      "value": 205,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:03.334604",
+      "value": 201,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:03.535696",
+      "value": 215,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:03.736991",
+      "value": 237,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:03.937201",
+      "value": 241,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:04.137729",
+      "value": 241,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:04.338367",
+      "value": 241,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:04.539069",
+      "value": 226,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:04.739820",
+      "value": 216,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:04.940589",
+      "value": 215,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:05.141218",
+      "value": 217,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:05.341884",
+      "value": 219,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:05.542339",
+      "value": 235,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:05.742810",
+      "value": 240,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:05.944407",
+      "value": 242,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:06.145319",
+      "value": 243,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:06.345835",
+      "value": 238,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:06.546533",
+      "value": 219,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:06.747296",
+      "value": 218,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:06.948029",
+      "value": 219,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:07.148772",
+      "value": 227,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:07.349526",
+      "value": 242,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:07.550061",
+      "value": 240,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:07.750561",
+      "value": 242,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:07.951115",
+      "value": 229,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:08.152003",
+      "value": 219,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:08.352475",
+      "value": 218,
+      "is_good": false
+    },
+    {
+      "timestamp": "2025-06-16T21:32:08.553302",
+      "value": 237,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:08.753857",
+      "value": 243,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:08.954587",
+      "value": 244,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:09.155104",
+      "value": 243,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:09.355972",
+      "value": 242,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:09.556444",
+      "value": 243,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:09.756859",
+      "value": 243,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:09.957363",
+      "value": 243,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:10.157958",
+      "value": 243,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T21:32:10.358605",
+      "value": 244,
+      "is_good": true
+    }
+  ],
+  "bad_posture_segments": [
+    {
+      "start": "2025-06-16T21:32:00.725269",
+      "end": "2025-06-16T21:32:02.130982",
+      "duration": 1
+    },
+    {
+      "start": "2025-06-16T21:32:02.933024",
+      "end": "2025-06-16T21:32:03.736991",
+      "duration": 1
+    },
+    {
+      "start": "2025-06-16T21:32:04.539069",
+      "end": "2025-06-16T21:32:05.542339",
+      "duration": 1
+    },
+    {
+      "start": "2025-06-16T21:32:06.546533",
+      "end": "2025-06-16T21:32:07.349526",
+      "duration": 1
+    },
+    {
+      "start": "2025-06-16T21:32:07.951115",
+      "end": "2025-06-16T21:32:08.553302",
+      "duration": 1
+    }
+  ],
+  "end_time": "2025-06-16T21:32:10.468166",
+  "duration_seconds": 9,
+  "total_breaks": 5,
+  "total_good_posture_time": 5
+}

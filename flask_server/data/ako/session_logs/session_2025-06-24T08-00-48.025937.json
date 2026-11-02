@@ -1,0 +1,101 @@
+{
+  "start_time": "2025-06-24T08:00:48.025937",
+  "offset": 238.96666666666667,
+  "posture_events": [
+    {
+      "timestamp": "2025-06-24T08:00:48.227401",
+      "value": 238,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-24T08:00:48.428313",
+      "value": 238,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-24T08:00:48.628798",
+      "value": 239,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-24T08:00:48.830561",
+      "value": 239,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-24T08:00:49.031803",
+      "value": 238,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-24T08:00:49.232276",
+      "value": 239,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-24T08:00:49.433180",
+      "value": 239,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-24T08:00:49.634390",
+      "value": 239,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-24T08:00:49.835136",
+      "value": 238,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-24T08:00:50.036346",
+      "value": 240,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-24T08:00:50.237083",
+      "value": 241,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-24T08:00:50.437975",
+      "value": 239,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-24T08:00:50.638666",
+      "value": 240,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-24T08:00:50.839229",
+      "value": 238,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-24T08:00:51.040166",
+      "value": 237,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-24T08:00:51.240756",
+      "value": 239,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-24T08:00:51.441690",
+      "value": 238,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-24T08:00:51.642436",
+      "value": 240,
+      "is_good": true
+    }
+  ],
+  "bad_posture_segments": [],
+  "end_time": "2025-06-24T08:00:51.773036",
+  "duration_seconds": 3,
+  "total_breaks": 0,
+  "total_good_posture_time": 3
+}

@@ -33,6 +33,12 @@ class TimerControls extends StatelessWidget {
       return isPaused
           ? ElevatedButton(
         onPressed: onResume,
+        style: ElevatedButton.styleFrom(
+          backgroundColor: Colors.lightGreen,
+          foregroundColor: Colors.white,
+          padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+          textStyle: TextStyle(fontSize: 18),
+        ),
         child: Text("Resume"),
       )
           : Row(
@@ -40,11 +46,23 @@ class TimerControls extends StatelessWidget {
         children: [
           ElevatedButton(
             onPressed: onPause,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.lightGreen,
+              foregroundColor: Colors.white,
+              padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+              textStyle: TextStyle(fontSize: 18),
+            ),
             child: Text("Pause"),
           ),
           SizedBox(width: 20),
           ElevatedButton(
             onPressed: onStop,
+            style: ElevatedButton.styleFrom(
+              backgroundColor: Colors.redAccent,
+              foregroundColor: Colors.white,
+              padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+              textStyle: TextStyle(fontSize: 18),
+            ),
             child: Text("Stop"),
           ),
         ],
@@ -84,6 +102,12 @@ class TimerControls extends StatelessWidget {
         SizedBox(height: 20),
         ElevatedButton(
           onPressed: onStart,
+          style: ElevatedButton.styleFrom(
+            backgroundColor: Colors.lightGreen,
+            foregroundColor: Colors.white,
+            padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 16.0),
+            textStyle: TextStyle(fontSize: 18),
+          ),
           child: Text("Start"),
         ),
       ],

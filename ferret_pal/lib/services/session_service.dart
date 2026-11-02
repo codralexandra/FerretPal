@@ -71,6 +71,21 @@ class SessionService{
     }
   }
 
+  Future<Map<String, dynamic>> fetchSecondToLastSession(String username) async {
+    final url = Uri.parse('$_baseUrl/$username/get_second_to_last_session');
+    try {
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        return json.decode(response.body);
+      } else {
+        throw Exception('Failed to load last session (status: ${response.statusCode})');
+      }
+    } catch (e) {
+      print('Error fetching last session: $e');
+      rethrow;
+    }
+  }
+
   Future<List<DateTime>> fetchAllSessionTimestamps(String username) async {
     final url = Uri.parse('$_baseUrl/$username/get_all_sessions');
     try {
@@ -97,6 +112,24 @@ class SessionService{
     } catch (e) {
       print('Error clearing sessions: $e');
       return false;
+    }
+  }
+
+  Future<Map<String, dynamic>> compareSessions(String username) async {
+    final url = Uri.parse('$_baseUrl/$username/compare_last_sessions');
+    try {
+      final response = await http.get(url);
+      if (response.statusCode == 200) {
+        return json.decode(response.body);
+      } else {
+        throw Exception('Failed to compare sessions');
+      }
+    } catch (e) {
+      print('Error comparing sessions: $e');
+      return {
+        "summary": "Error comparing sessions",
+        "error": e.toString()
+      };
     }
   }
 }

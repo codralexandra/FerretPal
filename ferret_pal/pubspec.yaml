@@ -36,6 +36,7 @@ dependencies:
   numberpicker: ^2.1.1
   fl_chart: ^0.63.0
   confetti: ^0.6.0
+  audioplayers: ^5.2.1
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -64,3 +65,5 @@ flutter:
     - assets/tick.png
     - assets/wall-clock.png
     - assets/wrong.png
+    - assets/posture-warning.mp3
+    - assets/default_avatar.png

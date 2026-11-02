@@ -30,6 +30,7 @@ class LastSessionOverviewState extends State<LastSessionOverview> {
     _sessionFuture = _sessionViewModel.loadLastSession(widget.username);
   }
 
+
   void refreshData() {
     setState(() {
       _loadSession();

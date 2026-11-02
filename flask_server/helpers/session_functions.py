@@ -54,8 +54,9 @@ def read_from_arduino(username):
             if arduino.in_waiting:
                 try:
                     value = int(arduino.readline().decode().strip())
+                    print("value:",value)
                     timestamp = datetime.now().isoformat()
-                    is_good = value >= offset - 10
+                    is_good = value >= offset - 5
 
                     session_data["posture_events"].append({
                         "timestamp": timestamp,
@@ -185,6 +186,15 @@ def get_last_session_data(username):
         session = json.load(f)
     return jsonify(session), 200
 
+def get_second_to_last_session(username):
+    log_dir = get_user_session_dir(username)
+    session_files = sorted(glob.glob(os.path.join(log_dir, "session_*.json")), reverse=True)
+    if not session_files:
+        return jsonify({"error": "No sessions found"}), 404
+    with open(session_files[1], "r") as f:
+        session = json.load(f)
+    return jsonify(session), 200
+
 def get_all_sessions(username):
     log_dir = get_user_session_dir(username)
     session_files = sorted(glob.glob(os.path.join(log_dir, "session_*.json")))
@@ -216,3 +226,80 @@ def clear_sessions(username):
         "status": "success",
         "message": f"{deleted_files} session(s) deleted."
     }), 200
+
+def compare_last_two_sessions(username):
+    log_dir = get_user_session_dir(username)
+    session_files = sorted(glob.glob(os.path.join(log_dir, "session_*.json")), reverse=True)
+
+    if len(session_files) < 2:
+        return json.dumps({"summary": "Not enough data to compare sessions."})
+
+    with open(session_files[0], "r") as f1, open(session_files[1], "r") as f2:
+        current = json.load(f1)
+        previous = json.load(f2)
+
+    curr_breaks = current.get("total_breaks", 0)
+    prev_breaks = previous.get("total_breaks", 0)
+
+    curr_good_time = current.get("total_good_posture_time", 0)
+    prev_good_time = previous.get("total_good_posture_time", 0)
+
+    curr_duration = current.get("duration_seconds", 0)
+    prev_duration = previous.get("duration_seconds", 0)
+
+    def safe_div(a, b):
+        return a / b if b != 0 else float('inf') if a > 0 else 0.0
+
+    breaks_change_pct = safe_div(curr_breaks - prev_breaks, prev_breaks or 1) * 100
+    posture_change_pct = safe_div(curr_good_time - prev_good_time, prev_good_time or 1) * 100
+    duration_change_pct = safe_div(curr_duration - prev_duration, prev_duration or 1) * 100
+
+    normalized_breaks = -breaks_change_pct
+    normalized_posture = posture_change_pct
+    normalized_duration = duration_change_pct
+
+    breaks_contrib = normalized_breaks * 0.3
+    posture_contrib = normalized_posture * 0.5
+    duration_contrib = normalized_duration * 0.2
+
+    total_score = breaks_contrib + posture_contrib + duration_contrib
+
+    summary = "This session was "
+    if total_score > 5:
+        summary += f"{round(total_score)}% better than the last one."
+    elif total_score < -5:
+        summary += f"{round(abs(total_score))}% worse than the last one."
+    else:
+        summary += "about the same as the last one."
+
+    detailed_report = {
+        "previous_session": {
+            "breaks": prev_breaks,
+            "good_posture_seconds": prev_good_time,
+            "duration_seconds": prev_duration
+        },
+        "current_session": {
+            "breaks": curr_breaks,
+            "good_posture_seconds": curr_good_time,
+            "duration_seconds": curr_duration
+        },
+        "changes": {
+            "breaks_change_percent": round(breaks_change_pct, 2),
+            "posture_change_percent": round(posture_change_pct, 2),
+            "duration_change_percent": round(duration_change_pct, 2)
+        },
+        "normalized_metrics": {
+            "breaks_normalized": round(normalized_breaks, 2),
+            "posture_normalized": round(normalized_posture, 2),
+            "duration_normalized": round(normalized_duration, 2)
+        },
+        "weighted_score_components": {
+            "breaks_contribution": round(breaks_contrib, 2),
+            "posture_contribution": round(posture_contrib, 2),
+            "duration_contribution": round(duration_contrib, 2)
+        },
+        "total_score": round(total_score, 2),
+        "summary": summary
+    }
+
+    return json.dumps(detailed_report)

@@ -3,8 +3,11 @@ import 'dart:convert';
 import 'package:ferret_pal/view_models/session_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 import '../widgets/session_timer.dart';
+
+final AudioPlayer posturePlayer = AudioPlayer();
 
 // Message label for posture alerts
 class PostureTracker extends StatefulWidget {
@@ -27,6 +30,14 @@ class _PostureTrackerState extends State<PostureTracker> {
     _postureSubscription = vm.postureStream.listen((good) {
       print("Got posture event: $good");
       if (mounted && widget.isRunning && !widget.isPaused) {
+        if (!good && isPostureGood) {
+          // Start playing audio alert in loop
+          posturePlayer.setReleaseMode(ReleaseMode.loop);
+          posturePlayer.play(AssetSource('posture-warning.mp3'));
+        } else if (good && !isPostureGood) {
+          // Stop audio when posture becomes good
+          posturePlayer.stop();
+        }
         setState(() => isPostureGood = good);
       }
     }, onError: (e) {

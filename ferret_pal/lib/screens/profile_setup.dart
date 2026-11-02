@@ -36,17 +36,19 @@ class _ProfileSetupState extends State<ProfileSetup> {
     final String displayName = _displayNameController.text.trim();
     final String username = _usernameController.text.trim();
 
-    if (username.isEmpty || displayName.isEmpty || _profileImage == null) {
+    if (username.isEmpty || displayName.isEmpty) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please provide a username, display name, and a profile picture.')),
+        SnackBar(content: Text('Please provide both a username and display name.')),
       );
       return;
     }
 
+    final profileImagePath = _profileImage?.path ?? 'assets/default_avatar.png';
+
     final profileViewModel = Provider.of<ProfileViewModel>(context, listen: false);
     try {
       profileViewModel.setUsername(username);
-      await profileViewModel.saveProfile(displayName, _profileImage!.path);
+      await profileViewModel.saveProfile(displayName, profileImagePath);
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Profile setup complete!')),
       );

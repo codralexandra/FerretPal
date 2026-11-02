@@ -1,0 +1,401 @@
+{
+  "start_time": "2025-06-16T19:58:56.844510",
+  "offset": 249.16666666666666,
+  "posture_events": [
+    {
+      "timestamp": "2025-06-16T19:58:57.046778",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:58:57.247555",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:58:57.450204",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:58:57.650735",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:58:57.851794",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:58:58.052479",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:58:58.253065",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:58:58.453510",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:58:58.654040",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:58:58.855458",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:58:59.056597",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:58:59.258475",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:58:59.459506",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:58:59.660476",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:58:59.860911",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:00.061210",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:00.261671",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:00.462375",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:00.662990",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:00.875480",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:01.076427",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:01.277255",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:01.477748",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:01.678188",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:01.878896",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:02.079970",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:02.280694",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:02.481257",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:02.681562",
+      "value": 247,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:02.882459",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:03.082769",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:03.283271",
+      "value": 254,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:03.484013",
+      "value": 258,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:03.684498",
+      "value": 256,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:03.885298",
+      "value": 258,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:04.086000",
+      "value": 255,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:04.286830",
+      "value": 258,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:04.487266",
+      "value": 265,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:04.688015",
+      "value": 270,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:04.888693",
+      "value": 270,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:05.089596",
+      "value": 265,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:05.290024",
+      "value": 267,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:05.491137",
+      "value": 272,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:05.691594",
+      "value": 274,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:05.892503",
+      "value": 274,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:06.092989",
+      "value": 274,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:06.294039",
+      "value": 271,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:06.494459",
+      "value": 256,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:06.695313",
+      "value": 253,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:06.896003",
+      "value": 252,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:07.096554",
+      "value": 251,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:07.297486",
+      "value": 247,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:07.498083",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:07.698673",
+      "value": 251,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:07.899463",
+      "value": 247,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:08.100068",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:08.300623",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:08.501142",
+      "value": 251,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:08.701955",
+      "value": 252,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:08.902482",
+      "value": 248,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:09.103329",
+      "value": 252,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:09.303875",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:09.504475",
+      "value": 252,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:09.705721",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:09.907394",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:10.108024",
+      "value": 253,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:10.308789",
+      "value": 252,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:10.509257",
+      "value": 251,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:10.710308",
+      "value": 249,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:10.910951",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:11.111561",
+      "value": 252,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:11.312171",
+      "value": 251,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:11.512747",
+      "value": 251,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:11.713313",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:11.914114",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:12.114592",
+      "value": 250,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:12.315440",
+      "value": 251,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T19:59:12.515944",
+      "value": 250,
+      "is_good": true
+    }
+  ],
+  "bad_posture_segments": [],
+  "end_time": "2025-06-16T19:59:12.550116",
+  "duration_seconds": 15,
+  "total_breaks": 0,
+  "total_good_posture_time": 15
+}

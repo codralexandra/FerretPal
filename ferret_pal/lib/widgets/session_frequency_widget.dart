@@ -12,10 +12,10 @@ class SessionFrequencyChart extends StatefulWidget {
   const SessionFrequencyChart({super.key, required this.username});
 
   @override
-  State<SessionFrequencyChart> createState() => _SessionFrequencyChartState();
+  State<SessionFrequencyChart> createState() => SessionFrequencyChartState();
 }
 
-class _SessionFrequencyChartState extends State<SessionFrequencyChart> {
+class SessionFrequencyChartState extends State<SessionFrequencyChart> {
   late Future<List<DateTime>> _sessionsFuture;
   SessionViewMode _selectedMode = SessionViewMode.daily;
 
@@ -28,6 +28,12 @@ class _SessionFrequencyChartState extends State<SessionFrequencyChart> {
   Future<List<DateTime>> _loadSessions() {
     return Provider.of<SessionViewModel>(context, listen: false)
         .loadAllSessionTimestamps(widget.username);
+  }
+
+  void refreshData(){
+    setState(() {
+      _sessionsFuture = _loadSessions();
+    });
   }
 
   @override
@@ -235,10 +241,12 @@ class _SessionFrequencyChartState extends State<SessionFrequencyChart> {
   }
 
   bool _isSameWeek(DateTime d1, DateTime d2) {
-    final start = d2.subtract(Duration(days: d2.weekday - 1));
-    final end = start.add(const Duration(days: 6));
-    return d1.isAfter(start.subtract(const Duration(seconds: 1))) &&
-        d1.isBefore(end.add(const Duration(seconds: 1)));
+    final d1Date = DateTime(d1.year, d1.month, d1.day);
+    final d2Date = DateTime(d2.year, d2.month, d2.day);
+    final startOfWeek = d2Date.subtract(Duration(days: d2Date.weekday - 1));
+    final endOfWeek = startOfWeek.add(const Duration(days: 6));
+    return d1Date.isAtSameMomentAs(startOfWeek) ||
+        (d1Date.isAfter(startOfWeek) && d1Date.isBefore(endOfWeek.add(const Duration(days: 1))));
   }
 
   bool _isSameDay(DateTime a, DateTime b) =>

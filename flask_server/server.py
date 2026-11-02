@@ -76,6 +76,10 @@ def posture_stream():
 def get_last_session(username):
     return session_functions.get_last_session_data(username)
 
+@app.route('/session/<username>/get_second_to_last_session', methods=['GET'])
+def get_second_to_last_session(username):
+    return session_functions.get_second_to_last_session(username)
+
 @app.route('/session/<username>/get_all_sessions', methods=['GET'])
 def get_all_sessions(username):
     return session_functions.get_all_sessions(username)
@@ -83,6 +87,11 @@ def get_all_sessions(username):
 @app.route('/session/<username>/clear_sessions', methods=['POST'])
 def clear_user_sessions(username):
     return session_functions.clear_sessions(username)
+
+@app.route('/session/<username>/compare_last_sessions', methods=['GET'])
+def compare_sessions(username):
+    result =  session_functions.compare_last_two_sessions(username)
+    return result
 
 if __name__ == '__main__':
     app.run(debug=True)

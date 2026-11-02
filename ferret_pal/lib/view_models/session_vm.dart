@@ -60,10 +60,27 @@ class SessionViewModel extends ChangeNotifier{
 
     try {
       _lastSession = await _sessionService.fetchLastSession(username);
-      return _lastSession!; // or return a default {} if null safety is an issue
+      return _lastSession!;
     } catch (e) {
       _error = e.toString();
-      rethrow; // Optional: rethrow if the UI needs to handle the error
+      rethrow;
+    } finally {
+      _isLoading = false;
+      notifyListeners();
+    }
+  }
+
+  Future<Map<String, dynamic>> loadSecondToLastSession(String username) async {
+    _isLoading = true;
+    _error = null;
+    notifyListeners();
+
+    try {
+      _lastSession = await _sessionService.fetchSecondToLastSession(username);
+      return _lastSession!;
+    } catch (e) {
+      _error = e.toString();
+      rethrow;
     } finally {
       _isLoading = false;
       notifyListeners();
@@ -83,7 +100,6 @@ class SessionViewModel extends ChangeNotifier{
     try {
       final success = await _sessionService.clearSessions(username);
       if (success) {
-        // Optionally, clear cached data if any
         _lastSession = null;
         notifyListeners();
       }
@@ -91,6 +107,19 @@ class SessionViewModel extends ChangeNotifier{
     } catch (e) {
       print('Failed to clear sessions in ViewModel: $e');
       return false;
+    }
+  }
+
+  Future<Map<String, dynamic>> compareSessions(String username) async {
+    try {
+      final comparisonData = await _sessionService.compareSessions(username);
+      return comparisonData;
+    } catch (e) {
+      print('Failed to compare sessions: $e');
+      return {
+        "summary": "Comparison failed.",
+        "error": e.toString()
+      };
     }
   }
 

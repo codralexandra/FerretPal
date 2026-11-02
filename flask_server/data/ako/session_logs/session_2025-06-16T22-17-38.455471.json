@@ -1,0 +1,181 @@
+{
+  "start_time": "2025-06-16T22:17:38.455471",
+  "offset": 1022.6333333333333,
+  "posture_events": [
+    {
+      "timestamp": "2025-06-16T22:17:38.657654",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:38.858255",
+      "value": 1022,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:39.059010",
+      "value": 1022,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:39.259968",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:39.460860",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:39.661386",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:39.862511",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:40.063334",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:40.263840",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:40.464453",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:40.665234",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:40.865949",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:41.066667",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:41.267398",
+      "value": 1022,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:41.468049",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:41.668652",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:41.869202",
+      "value": 1022,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:42.069676",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:42.270193",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:42.470867",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:42.671521",
+      "value": 1022,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:42.872559",
+      "value": 1022,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:43.073217",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:43.274173",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:43.474860",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:43.676444",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:43.876835",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:44.077521",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:44.278236",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:44.478694",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:44.679577",
+      "value": 1021,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:44.880135",
+      "value": 1023,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:45.081123",
+      "value": 1022,
+      "is_good": true
+    },
+    {
+      "timestamp": "2025-06-16T22:17:45.282092",
+      "value": 1023,
+      "is_good": true
+    }
+  ],
+  "bad_posture_segments": [],
+  "end_time": "2025-06-16T22:17:45.418777",
+  "duration_seconds": 6,
+  "total_breaks": 0,
+  "total_good_posture_time": 7
+}
